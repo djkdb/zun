@@ -1,0 +1,223 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   ZUN DESIGN TOKENS
+   Midnight Navy · Off White · Cool Gray · Electric Blue
+   ───────────────────────────────────────────── */
+:root {
+  --bg: #070b18;            /* midnight navy (deepest) */
+  --bg-1: #0b1226;          /* midnight navy */
+  --bg-2: #101a36;          /* raised surface */
+  --bg-3: #172346;          /* hover surface */
+  --line: rgba(148, 163, 205, 0.14);
+  --line-strong: rgba(148, 163, 205, 0.28);
+
+  --fg: #f2f4fa;            /* off white */
+  --fg-muted: #9aa5c4;      /* cool gray */
+  --fg-dim: #66718f;        /* dim gray */
+
+  --accent: #3b82f6;        /* electric blue */
+  --accent-strong: #60a5fa;
+  --accent-soft: rgba(59, 130, 246, 0.14);
+  --accent-glow: rgba(59, 130, 246, 0.45);
+
+  --warn: #fbbf24;          /* secondary accent — used sparingly (status dots) */
+  --ok: #34d399;            /* secondary accent — used sparingly (status dots) */
+
+  --radius: 6px;
+  --nav-h: 56px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-pixel: steps(6, end);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-1: var(--bg-1);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-dim: var(--fg-dim);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-warn: var(--warn);
+  --color-ok: var(--ok);
+
+  --font-sans: var(--font-sans-src), "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: var(--font-mono-src), ui-monospace, "SF Mono", Menlo, monospace;
+  --font-pixel: var(--font-pixel-src), var(--font-mono-src), monospace;
+
+  --ease-out: var(--ease-out);
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Focus — always visible, pixel-style ring */
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Reduced motion — kill all decorative animation */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   BACKGROUND TEXTURES
+   ───────────────────────────────────────────── */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 205, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 205, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.bg-dots {
+  background-image: radial-gradient(rgba(148, 163, 205, 0.16) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.bg-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+}
+.mask-fade-y {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
+/* ─────────────────────────────────────────────
+   PIXEL UI PRIMITIVES
+   ───────────────────────────────────────────── */
+.pixel-border {
+  /* 2px stepped border using box-shadow — reads as pixel art without images */
+  box-shadow:
+    0 -2px 0 0 var(--line-strong),
+    0 2px 0 0 var(--line-strong),
+    -2px 0 0 0 var(--line-strong),
+    2px 0 0 0 var(--line-strong);
+}
+.pixel-border-accent {
+  box-shadow:
+    0 -2px 0 0 var(--accent),
+    0 2px 0 0 var(--accent),
+    -2px 0 0 0 var(--accent),
+    2px 0 0 0 var(--accent);
+}
+.pixel-corners {
+  clip-path: polygon(
+    0 4px, 4px 4px, 4px 0,
+    calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+    100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+    4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+  );
+}
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+.section-title {
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.prose-ko {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+/* Custom cursor: hide native cursor only on fine pointers when JS enabled */
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+/* Keyframes (opt-in via classes; disabled by reduced-motion above) */
+@keyframes blink-caret {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes scan {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(100%); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+.anim-caret { animation: blink-caret 1s steps(1) infinite; }
+.anim-float { animation: float-y 4s ease-in-out infinite; }
+.anim-pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Scrollbar (subtle) */
+* { scrollbar-width: thin; scrollbar-color: var(--bg-3) transparent; }
+
+/* Character idle bob — stepped so pixels snap instead of blur */
+@keyframes idle-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+}
+.anim-idle-bob { animation: idle-bob 2.8s steps(1, end) infinite; }
+@keyframes shadow-breathe {
+  0%, 100% { transform: scaleX(1); opacity: 0.5; }
+  50% { transform: scaleX(0.92); opacity: 0.35; }
+}
+.anim-shadow { animation: shadow-breathe 2.8s steps(1, end) infinite; transform-origin: center; }
