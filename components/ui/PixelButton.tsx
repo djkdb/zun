@@ -17,7 +17,7 @@ type AnchorProps = BaseProps & React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 const base =
   "group relative inline-flex min-h-11 items-center justify-center gap-2 px-5 py-2.5 font-mono text-sm uppercase tracking-[0.14em] transition-[transform,background-color,color] duration-150 ease-out active:translate-y-px pixel-corners";
 const variants: Record<Variant, string> = {
-  primary: "bg-accent text-white hover:bg-accent-strong",
+  primary: "bg-accent text-bg font-semibold hover:bg-accent-strong", // navy on blue ≥ 4.5:1
   ghost: "bg-bg-2 text-fg hover:bg-bg-3 ring-1 ring-inset ring-line-strong",
 };
 

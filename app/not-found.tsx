@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ZunCharacter } from "@/components/character";
+import { PixelButton } from "@/components/ui/PixelButton";
 
 export default function NotFound() {
   return (
@@ -8,12 +8,9 @@ export default function NotFound() {
       <p className="eyebrow mt-8">404 / NOT FOUND</p>
       <h1 className="section-title mt-3 text-3xl text-fg sm:text-4xl">PAGE NOT BUILT (YET).</h1>
       <p className="prose-ko mt-4 max-w-sm text-fg-muted">이 주소에는 아직 아무것도 없습니다. 홈으로 돌아가서 다시 탐험해 주세요.</p>
-      <Link
-        href="/"
-        className="mt-8 inline-flex min-h-11 items-center bg-accent px-5 py-2.5 font-mono text-sm uppercase tracking-[0.14em] text-white hover:bg-accent-strong pixel-corners"
-      >
+      <PixelButton href="/" className="mt-8">
         [ BACK TO ZUN ]
-      </Link>
+      </PixelButton>
     </main>
   );
 }
