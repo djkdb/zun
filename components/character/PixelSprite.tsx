@@ -11,8 +11,10 @@ import {
   POSES,
   SPRITE_H,
   SPRITE_W,
+  type CorePose,
   type PoseFrame,
 } from "./poses";
+import { SVG_FALLBACK } from "@/data/character";
 import { composite, gridToPaths } from "./renderPixels";
 
 export interface PixelSpriteProps {
@@ -31,8 +33,13 @@ export interface PixelSpriteProps {
   style?: React.CSSProperties;
 }
 
+export function resolveSvgPose(pose: PoseName): CorePose {
+  if (POSES[pose]) return pose as CorePose;
+  return (SVG_FALLBACK[pose] ?? "idle") as CorePose;
+}
+
 function frameOf(pose: PoseName, frame: number): PoseFrame {
-  const def = POSES[pose] ?? POSES.idle;
+  const def = POSES[resolveSvgPose(pose)];
   return def.frames[frame % def.frames.length];
 }
 

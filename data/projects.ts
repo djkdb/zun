@@ -33,7 +33,7 @@ export const projects: Project[] = [
     result: "TODO: 결과 / 배운 점",
     themes: ["web", "product", "ai"],
     draft: true,
-    pose: "telescope",
+    pose: "backpack",
   },
   {
     id: "zun-food",
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     result: "TODO: 결과 / 배운 점",
     themes: ["experiment", "web"],
     draft: true,
-    pose: "experiment",
+    pose: "tea",
   },
   {
     id: "asteron",
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     result: "TODO: 결과 / 배운 점",
     themes: ["software", "ai"],
     draft: true,
-    pose: "think",
+    pose: "search",
   },
   {
     id: "ev-safepark",
@@ -72,7 +72,7 @@ export const projects: Project[] = [
     result: "TODO: 결과 / 배운 점",
     themes: ["software", "product"],
     draft: true,
-    pose: "point",
+    pose: "present",
   },
   {
     id: "zun-portfolio",
@@ -89,6 +89,6 @@ export const projects: Project[] = [
     github: { label: "GitHub", href: "https://github.com/djkdb/zun" },
     year: "2026",
     themes: ["web", "product", "content"],
-    pose: "build",
+    pose: "night",
   },
 ];

@@ -1,5 +1,8 @@
 import type { PoseName } from "@/data/types";
 
+export type CorePose =
+  | "idle" | "think" | "walk" | "build" | "phone" | "book" | "point" | "telescope" | "wave" | "surprise" | "experiment";
+
 /**
  * ZUN sprite = HEAD (shared) + EYES (separate, so they can look around/blink)
  * + POSE (full-height overlay: body, arms, legs, props).
@@ -387,7 +390,8 @@ export interface PoseDef {
   frameMs?: number;
 }
 
-export const POSES: Record<PoseName, PoseDef> = {
+/** Poses the code-drawn SVG can render. Others resolve through SVG_FALLBACK. */
+export const POSES: Partial<Record<PoseName, PoseDef>> & Record<CorePose, PoseDef> = {
   idle: { frames: [{ body: BODY_IDLE }] },
   think: { frames: [{ body: BODY_THINK, headOverlay: THINK_HEAD_OVERLAY, mouth: "flat" }] },
   walk: {
@@ -404,4 +408,4 @@ export const POSES: Record<PoseName, PoseDef> = {
   experiment: { frames: [{ body: BODY_EXPERIMENT, headOverlay: EXPERIMENT_HEAD_OVERLAY }] },
 };
 
-export const POSE_NAMES = Object.keys(POSES) as PoseName[];
+export const POSE_NAMES = Object.keys(POSES) as CorePose[];

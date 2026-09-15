@@ -65,7 +65,7 @@ export function Contact() {
         </div>
 
         <Reveal delay={0.2} className="order-first flex justify-center md:order-none md:justify-end">
-          <ZunCharacter pose="wave" sizeClass="w-32 md:w-48" followPointer label="ZUN waving goodbye" />
+          <ZunCharacter pose="cheers" sizeClass="w-32 md:w-48" followPointer label="ZUN waving goodbye" />
         </Reveal>
       </div>
 

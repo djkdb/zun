@@ -1,0 +1,77 @@
+import type { PoseName } from "./types";
+
+/**
+ * Official ZUN sheet — 8 × 4 cells, numbered 01–32 row-major.
+ * `cell` is the file name under /public/character/poses after `npm run character:split`.
+ * Descriptions document what each cell shows so poses can be picked with intent.
+ */
+export const SHEET_CELLS: Record<PoseName, { cell: string; description: string }> = {
+  idle: { cell: "01", description: "standing, hands in hoodie pocket" },
+  "laptop-desk": { cell: "02", description: "typing on a laptop at a desk (side view)" },
+  mug: { cell: "03", description: "holding a Z mug" },
+  think: { cell: "04", description: "hand on chin, question mark" },
+  "laptop-lap": { cell: "05", description: "sitting on the floor, laptop on lap" },
+  idea: { cell: "06", description: "finger up, lightbulb" },
+  walk: { cell: "07", description: "walking with a backpack" },
+  build: { cell: "08", description: "coding at a desk with a monitor full of code" },
+  headphones: { cell: "09", description: "headphones on, eyes closed, music notes" },
+  book: { cell: "10", description: "reading a CODE book" },
+  beanbag: { cell: "11", description: "laptop on a beanbag" },
+  ok: { cell: "12", description: "holding an OK! sign" },
+  coffee: { cell: "13", description: "holding a coffee cup" },
+  celebrate: { cell: "14", description: "arms up, confetti" },
+  tired: { cell: "15", description: "rubbing an eye, sleepy" },
+  run: { cell: "16", description: "running with speed lines" },
+  "desk-plant": { cell: "17", description: "laptop at a desk with a plant" },
+  sunglasses: { cell: "18", description: "sunglasses, arms crossed, sparkles" },
+  phone: { cell: "19", description: "looking at a smartphone" },
+  cat: { cell: "20", description: "petting a cat, heart" },
+  backpack: { cell: "21", description: "standing with a backpack" },
+  code: { cell: "22", description: "holding a </> sign" },
+  tea: { cell: "23", description: "drinking bubble tea" },
+  night: { cell: "24", description: "laptop at night, desk lamp, moon" },
+  books: { cell: "25", description: "carrying Clean Code / Algorithm / System Design books" },
+  sleep: { cell: "26", description: "asleep under a blanket, zzz" },
+  write: { cell: "27", description: "writing in a notebook" },
+  present: { cell: "28", description: "explaining a flowchart on a whiteboard" },
+  search: { cell: "29", description: "magnifying glass, investigating" },
+  tablet: { cell: "30", description: "sitting with a tablet / gamepad" },
+  cheers: { cell: "31", description: "thumbs up, wink" },
+  "laptop-floor": { cell: "32", description: "sitting on the floor with a laptop" },
+  // the SVG fallback has these; on the sheet they map to the closest cell
+  point: { cell: "06", description: "→ idea (finger up)" },
+  telescope: { cell: "29", description: "→ search (magnifying glass)" },
+  wave: { cell: "31", description: "→ cheers (thumbs up)" },
+  surprise: { cell: "14", description: "→ celebrate" },
+  experiment: { cell: "22", description: "→ code sign" },
+};
+
+/** Sheet-only poses → nearest pose the SVG fallback can draw. */
+export const SVG_FALLBACK: Partial<Record<PoseName, PoseName>> = {
+  "laptop-desk": "build",
+  mug: "experiment",
+  "laptop-lap": "build",
+  idea: "point",
+  headphones: "idle",
+  beanbag: "build",
+  ok: "wave",
+  coffee: "experiment",
+  celebrate: "surprise",
+  tired: "think",
+  run: "walk",
+  "desk-plant": "build",
+  sunglasses: "idle",
+  cat: "idle",
+  backpack: "walk",
+  code: "experiment",
+  tea: "experiment",
+  night: "build",
+  books: "book",
+  sleep: "think",
+  write: "book",
+  present: "point",
+  search: "telescope",
+  tablet: "phone",
+  cheers: "wave",
+  "laptop-floor": "build",
+};

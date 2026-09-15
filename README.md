@@ -50,8 +50,19 @@ Node 20+ 권장. Next.js 16 · TypeScript · Tailwind CSS v4 · Framer Motion ·
 - `PixelSprite.tsx` — 그리드를 SVG path로 렌더링(이미지 파일 불필요, 어떤 크기에서도 선명).
 - `ZunCharacter.tsx` — 눈 깜빡임, idle bob, 마우스 시선 추적, 프레임 애니메이션. `prefers-reduced-motion` 시 모두 비활성.
 
-공식 스프라이트 이미지가 따로 있다면 `public/character/` 에 넣고 `PixelSprite` 대신 `<img>` 를 쓰도록
-`ZunCharacter` 만 바꾸면 됩니다. 포즈를 추가하려면 `poses.ts` 에 그리드를 추가하고 `data/types.ts` 의 `PoseName` 에 이름을 더하세요.
+### 공식 32포즈 스프라이트 시트 적용
+
+1. 8×4 시트(01~32)를 `public/character/zun-sheet.png` 로 저장 (투명 배경 권장, 체커보드가 박힌 파일도 처리됨)
+2. `npm run character:split` 실행
+   → 각 칸의 번호 라벨 제거, 배경 투명화, 여백 트리밍 후 `public/character/poses/01.png … 32.png` 생성
+   → `data/character-manifest.ts` 가 `available: true` 로 재생성되어 사이트 전체가 자동으로 실제 스프라이트를 사용
+3. 포즈 이름 ↔ 칸 번호 매핑은 `data/character.ts` (`SHEET_CELLS`). 시트가 없으면 SVG 폴백이 그려지며,
+   시트 전용 포즈(idea, present, search, celebrate …)는 `SVG_FALLBACK` 으로 가장 가까운 SVG 포즈로 대체됩니다.
+
+포즈 이름은 32칸 전부 정의되어 있습니다 (`data/types.ts` 의 `PoseName`):
+idle · laptop-desk · mug · think · laptop-lap · idea · walk · build · headphones · book · beanbag · ok · coffee ·
+celebrate · tired · run · desk-plant · sunglasses · phone · cat · backpack · code · tea · night · books · sleep ·
+write · present · search · tablet · cheers · laptop-floor
 
 ## 구조
 

@@ -11,7 +11,7 @@ import { ZunCharacter } from "@/components/character";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ProjectModal } from "@/components/projects/ProjectModal";
 
-const DEFAULT_POSE: PoseName = "experiment";
+const DEFAULT_POSE: PoseName = "code";
 
 /**
  * 03 / PROJECTS — the lab grid. Hover/focus a card and ZUN reacts with that

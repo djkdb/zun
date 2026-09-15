@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import type { PoseName } from "@/data/types";
 import { cn } from "@/lib/utils";
 import { useFinePointer, useLookAt, usePrefersReducedMotion } from "@/lib/hooks";
-import { PixelSprite } from "./PixelSprite";
+import { PixelSprite, resolveSvgPose } from "./PixelSprite";
 import { POSES } from "./poses";
+import { SheetCharacter } from "./SheetCharacter";
+import { characterManifest } from "@/data/character-manifest";
 
 export interface ZunCharacterProps {
   pose?: PoseName;
@@ -28,11 +30,19 @@ export interface ZunCharacterProps {
 }
 
 /**
- * ZUN — the guide character. Wraps PixelSprite with life: blinking, an idle bob,
- * pointer-following eyes and frame animation for animated poses (walk).
+ * ZUN — the guide character.
+ * With the official sheet installed (data/character-manifest.ts → available) it renders
+ * the real sprite; otherwise the code-drawn SVG with blinking, idle bob and eye tracking.
  * Everything decorative is disabled under prefers-reduced-motion.
  */
-export function ZunCharacter({
+export function ZunCharacter(props: ZunCharacterProps) {
+  if (characterManifest.available) {
+    return <SheetCharacter {...props} pose={props.pose ?? "idle"} />;
+  }
+  return <SvgCharacter {...props} />;
+}
+
+function SvgCharacter({
   pose = "idle",
   size = 120,
   followPointer = false,
@@ -70,7 +80,7 @@ export function ZunCharacter({
   }, [reduce, idle]);
 
   // frame animation (e.g. walk)
-  const def = POSES[pose];
+  const def = POSES[resolveSvgPose(pose)];
   const [frame, setFrame] = useState(0);
   useEffect(() => {
     if (reduce || !def.frameMs || def.frames.length < 2) return;

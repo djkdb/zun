@@ -22,7 +22,7 @@ export const journey: JourneyItem[] = [
     description:
       "배운 것을 프로젝트로 옮기기 시작했습니다. 작게 만들고, 부수고, 다시 만들었습니다.",
     keywords: ["Projects", "Experiments", "Web"],
-    pose: "build",
+    pose: "laptop-desk",
   },
   {
     id: "2026",
@@ -39,7 +39,7 @@ export const journey: JourneyItem[] = [
     title: "BUILDING NEXT",
     description: "다음에 만들 것을 찾고 있습니다.",
     keywords: ["Next"],
-    pose: "telescope",
+    pose: "search",
     current: true,
   },
 ];

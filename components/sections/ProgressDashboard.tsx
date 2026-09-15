@@ -85,7 +85,7 @@ export function ProgressDashboard() {
       </div>
 
       <div className="hidden md:block">
-        <ZunCharacter pose="build" size={132} />
+        <ZunCharacter pose="night" size={132} />
       </div>
 
       {/* ticker */}
