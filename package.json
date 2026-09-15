@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "character:split": "node scripts/split-character-sheet.mjs"
+    "character:split": "node scripts/split-character-sheet.mjs",
+    "deploy": "next build && npx wrangler pages deploy out --project-name=zun",
+    "preview:static": "npx serve out"
   },
   "dependencies": {
     "framer-motion": "^13.3.0",

@@ -1,0 +1,15 @@
+# Cloudflare Pages headers (copied into ./out by the static export)
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Hashed build assets: cache forever
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Character sprites & fonts
+/character/*
+  Cache-Control: public, max-age=604800

@@ -8,12 +8,47 @@ ZUN(성준)의 개인 포트폴리오. 이력서형 페이지가 아니라, 픽�
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # 프로덕션 빌드
-npm run start    # 빌드 결과 실행
+npm run build    # 정적 export → ./out (Cloudflare Pages 업로드용)
+npm run preview:static   # ./out 을 로컬에서 미리보기
 npm run lint     # ESLint
 ```
 
 Node 20+ 권장. Next.js 16 · TypeScript · Tailwind CSS v4 · Framer Motion · Lenis.
+
+## 배포 (Cloudflare Pages)
+
+사이트는 서버가 필요 없는 완전 정적 사이트입니다. `next.config.ts` 의 `output: "export"` 로
+`npm run build` 가 `out/` 폴더(HTML · JS · OG 이미지 · 파비콘 · robots · sitemap)를 만들고, 그대로 Cloudflare Pages에 올립니다.
+
+### 방법 A — GitHub 연동 (권장, 푸시하면 자동 배포)
+
+1. https://dash.cloudflare.com → **Workers & Pages → Create → Pages → Connect to Git** → `djkdb/zun` 선택
+2. 빌드 설정
+   - Framework preset: **Next.js (Static HTML Export)** (없으면 None)
+   - Build command: `npm run build`
+   - Build output directory: `out`
+   - Environment variables: `NODE_VERSION` = `22`
+3. **Save and Deploy** → `https://zun.pages.dev` 같은 주소가 생깁니다. 이후 브랜치에 푸시할 때마다 자동 재배포되고,
+   다른 브랜치는 프리뷰 URL로 배포됩니다.
+4. 커스텀 도메인: Pages 프로젝트 → **Custom domains → Set up a domain**. 도메인이 Cloudflare DNS에 있으면 자동으로 연결됩니다.
+5. 도메인이 정해지면 `data/profile.ts` 의 `siteUrl` 을 실제 주소로 바꿔주세요(OG 이미지·sitemap URL에 쓰입니다).
+
+### 방법 B — 터미널에서 직접 올리기
+
+```bash
+npx wrangler login          # 최초 1회, 브라우저에서 Cloudflare 로그인
+npm run deploy              # next build → wrangler pages deploy out
+```
+
+처음 실행하면 프로젝트 `zun` 을 만들지 물어봅니다. 이후에는 같은 명령으로 재배포됩니다.
+
+### 포함된 설정
+
+- `public/_headers` — 보안 헤더와 캐시 정책(`/_next/static/*` 는 1년 immutable). Pages가 자동으로 읽습니다.
+- `out/404.html` — Next의 not-found 페이지가 그대로 404 응답으로 쓰입니다.
+- `wrangler.jsonc` — 방법 B용 Pages 설정.
+
+로컬에서 배포 결과물을 미리 보려면 `npm run build && npm run preview:static` 을 실행하세요.
 
 ## 콘텐츠 수정 위치 (여기만 고치면 됩니다)
 

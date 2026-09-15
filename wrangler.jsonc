@@ -1,0 +1,8 @@
+{
+  // Cloudflare config — used by `npm run deploy` (Wrangler → Cloudflare Pages).
+  // Dashboard Git integration does not need this file; see README "배포".
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "zun",
+  "compatibility_date": "2026-09-01",
+  "pages_build_output_dir": "./out"
+}
