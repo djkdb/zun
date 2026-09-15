@@ -20,8 +20,11 @@ interface TerminalIntroProps {
  * Under reduced motion everything renders immediately.
  */
 export function TerminalIntro({ command, lines, startDelay = 250, charMs = 55, reduce, onDone, className }: TerminalIntroProps) {
-  const [typed, setTyped] = useState(reduce ? command.length : 0);
-  const [shown, setShown] = useState(reduce ? lines.length : 0);
+  const [typedState, setTyped] = useState(0);
+  const [shownState, setShown] = useState(0);
+  // under reduced motion everything is shown at once (derived, not state, so SSR markup matches)
+  const typed = reduce ? command.length : typedState;
+  const shown = reduce ? lines.length : shownState;
 
   useEffect(() => {
     if (reduce) {

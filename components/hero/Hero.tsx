@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { usePrefersReducedMotion } from "@/lib/hooks";
 import { useRef, useState } from "react";
 import { profile } from "@/data/profile";
 import { scrollToId } from "@/lib/scroll";
@@ -15,9 +16,10 @@ import { TerminalIntro } from "./TerminalIntro";
  * slow parallax on scroll).
  */
 export function Hero() {
-  const reduce = useReducedMotion() ?? false;
+  // effect-based so SSR and the first client render agree (no hydration mismatch)
+  const reduce = usePrefersReducedMotion();
   const ref = useRef<HTMLElement>(null);
-  const [typed, setTyped] = useState(reduce);
+  const [typed, setTyped] = useState(false);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const charY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 80]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 40]);

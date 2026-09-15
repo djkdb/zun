@@ -9,3 +9,6 @@ export function seeded(seed: number) {
   t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
   return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 }
+
+/** True when a content string is still an unfilled placeholder. */
+export const isTodo = (s: string | undefined) => !!s && s.trim().toUpperCase().startsWith("TODO");

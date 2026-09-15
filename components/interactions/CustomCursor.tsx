@@ -74,7 +74,7 @@ export function CustomCursor() {
         ref={dot}
         aria-hidden
         className={cn(
-          "pointer-events-none fixed left-0 top-0 z-[9999] -ml-[3px] -mt-[3px] h-[6px] w-[6px] bg-accent transition-opacity duration-150",
+          "pointer-events-none fixed left-0 top-0 z-[9999] -ml-[3px] -mt-[3px] h-[6px] w-[6px] bg-white mix-blend-difference transition-opacity duration-150",
           state === "hidden" && "opacity-0",
           state === "text" && "h-[18px] w-[2px] -mt-[9px] -ml-px",
         )}
