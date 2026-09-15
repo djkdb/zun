@@ -19,7 +19,12 @@ import { resolve } from "node:path";
 const COLS = 8, ROWS = 4;
 const src = resolve(process.argv[2] ?? "public/character/zun-sheet.png");
 const outDir = resolve("public/character/poses");
+const quiet = process.argv.includes("--if-present");
 if (!existsSync(src)) {
+  if (quiet) {
+    console.log("character: no sheet at public/character/zun-sheet.png — keeping the SVG fallback");
+    process.exit(0);
+  }
   console.error(`Sheet not found: ${src}\nPut the sheet at public/character/zun-sheet.png and re-run.`);
   process.exit(1);
 }
@@ -50,7 +55,7 @@ for (let row = 0; row < ROWS; row++) {
       cell[di] = data[si]; cell[di + 1] = data[si + 1]; cell[di + 2] = data[si + 2]; cell[di + 3] = data[si + 3];
     }
     // 1) label eraser: everything within the top-left label box becomes transparent
-    const LW = Math.round(cw * 0.32), LH = Math.round(ch * 0.2);
+    const LW = Math.round(cw * 0.28), LH = Math.round(ch * 0.175);
     for (let y = 0; y < LH; y++) for (let x = 0; x < LW; x++) cell[(y * cw + x) * 4 + 3] = 0;
     // 2) checkerboard removal: flood fill from the cell edges over checker-coloured pixels only,
     //    so whites inside the character (eyes, sneakers) survive.

@@ -9,7 +9,8 @@
     "lint": "eslint",
     "character:split": "node scripts/split-character-sheet.mjs",
     "deploy": "next build && npx wrangler pages deploy out --project-name=zun",
-    "preview:static": "npx serve out"
+    "preview:static": "npx serve out",
+    "prebuild": "node scripts/split-character-sheet.mjs --if-present"
   },
   "dependencies": {
     "framer-motion": "^13.3.0",
