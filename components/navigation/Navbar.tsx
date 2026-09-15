@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { scrollToId } from "@/lib/scroll";
@@ -19,6 +19,8 @@ export function Navbar() {
   const [active, setActive] = useState<string>("hero");
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 220, damping: 40, mass: 0.4 });
 
   // show/hide on scroll direction, never while hero is on screen
   useEffect(() => {
@@ -44,20 +46,31 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // active section
+  // active section — deterministic: the last section whose top passed 45% of the viewport
   useEffect(() => {
     const ids = ALL_SECTIONS.map((s) => s.id);
-    const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
-    if (!els.length) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        const top = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (top) setActive(top.target.id);
-      },
-      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.1, 0.25, 0.5] },
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const line = window.scrollY + window.innerHeight * 0.45;
+      let current = ids[0];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= line) current = id;
+      }
+      setActive((prev) => (prev === current ? prev : current));
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   // lock scroll + esc for menu
@@ -82,6 +95,12 @@ export function Navbar() {
 
   return (
     <>
+      {/* reading progress — the one always-visible wayfinding element */}
+      <motion.div
+        aria-hidden
+        className="fixed inset-x-0 top-0 z-[55] h-[2px] origin-left bg-accent"
+        style={{ scaleX: reduce ? scrollYProgress : progress }}
+      />
       <motion.header
         initial={false}
         animate={{ y: shown ? 0 : -80, opacity: shown ? 1 : 0 }}

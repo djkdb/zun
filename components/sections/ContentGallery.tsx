@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { contentItems } from "@/data";
+import { contentBrand, contentItems } from "@/data";
 import type { ContentItem } from "@/data/types";
 import { cn, isTodo, seeded } from "@/lib/utils";
 import { Reveal } from "@/components/interactions/Reveal";
@@ -63,6 +63,27 @@ function Tile({ item, index }: { item: ContentItem; index: number }) {
   );
 }
 
+/** Last tile: the action a visitor can actually take right now. */
+function FollowTile() {
+  return (
+    <a
+      href={contentBrand.url}
+      target="_blank"
+      rel="noreferrer noopener"
+      data-cursor="link"
+      className="group relative flex aspect-square w-full flex-col justify-between overflow-hidden bg-accent-soft p-4 pixel-border-accent transition-colors hover:bg-accent/25 md:aspect-auto md:h-full"
+    >
+      <span className="font-mono text-[10px] tracking-[0.2em] text-accent-strong">INSTAGRAM</span>
+      <span>
+        <span className="block font-pixel text-lg leading-tight text-fg sm:text-xl">FOLLOW THE PROCESS</span>
+        <span className="mt-2 block font-mono text-sm text-accent-strong">
+          {contentBrand.handle} <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">↗</span>
+        </span>
+      </span>
+    </a>
+  );
+}
+
 export function ContentGallery() {
   return (
     <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4" role="list">
@@ -71,6 +92,9 @@ export function ContentGallery() {
           <Tile item={item} index={i} />
         </Reveal>
       ))}
+      <Reveal as="li" delay={contentItems.length * 0.05} y={12} className="flex">
+        <FollowTile />
+      </Reveal>
     </ul>
   );
 }

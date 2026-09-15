@@ -50,11 +50,4 @@ export const contentItems: ContentItem[] = [
     takeaway: "TODO: 짧은 takeaway",
     draft: true,
   },
-  {
-    id: "c6",
-    title: "TODO: 콘텐츠 제목",
-    category: "AI",
-    takeaway: "TODO: 짧은 takeaway",
-    draft: true,
-  },
 ];

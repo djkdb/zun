@@ -28,7 +28,7 @@ export function Hero() {
   // Timeline (seconds)
   const T = reduce
     ? { grid: 0, term: 0, char: 0, title: 0, sub: 0, cta: 0 }
-    : { grid: 0, term: 0.15, char: 0.75, title: 1.05, sub: 1.3, cta: 1.5 };
+    : { grid: 0, term: 0.12, char: 0.55, title: 0.8, sub: 1.0, cta: 1.15 };
   const ease = [0.22, 1, 0.36, 1] as const;
   const up = (delay: number) => ({
     initial: reduce ? false : { opacity: 0, y: 14 },
@@ -63,7 +63,7 @@ export function Hero() {
             <TerminalIntro
               command="whoami"
               lines={[profile.brand, ...profile.roles.slice(0, 3)]}
-              startDelay={reduce ? 0 : 350}
+              startDelay={reduce ? 0 : 280}
               reduce={reduce}
               onDone={() => setTyped(true)}
             />
@@ -106,7 +106,7 @@ export function Hero() {
                 label={typed ? "ZUN pixel character, idle and looking around" : "ZUN pixel character"}
               />
             </div>
-            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-bg px-2 font-mono text-[10px] tracking-[0.2em] text-fg-dim">
+            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-bg px-2 font-mono text-[10px] tracking-[0.2em] text-fg-dim">
               ZUN · v2026
             </div>
           </div>

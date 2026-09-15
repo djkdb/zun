@@ -129,7 +129,7 @@ export const ProjectCard = forwardRef<HTMLButtonElement, ProjectCardProps>(funct
         {todoTagline ? (
           <p className="prose-ko mt-3 flex flex-wrap items-center gap-2 text-sm leading-relaxed text-fg-dim">
             한 줄 소개 준비 중
-            <TodoTag />
+            {!project.draft && <TodoTag />}
           </p>
         ) : (
           <p className="prose-ko mt-3 text-sm leading-relaxed text-fg-muted">{project.tagline}</p>

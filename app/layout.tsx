@@ -19,7 +19,7 @@ const mono = JetBrains_Mono({
 const pixel = Silkscreen({
   variable: "--font-pixel-src",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: "400",
   display: "swap",
 });
 
