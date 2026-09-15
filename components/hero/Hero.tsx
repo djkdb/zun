@@ -81,7 +81,10 @@ export function Hero() {
             <PixelButton onClick={() => scrollToId("about")} aria-label="Explore ZUN — scroll to About">
               [ EXPLORE ZUN ]
             </PixelButton>
-            <span className="font-mono text-xs tracking-[0.14em] text-fg-dim">{profile.taglineAlt}</span>
+            <PixelButton href="/play" variant="ghost" aria-label="Open the 3D playground">
+              [ PLAYGROUND ]
+            </PixelButton>
+            <span className="w-full font-mono text-xs tracking-[0.14em] text-fg-dim sm:w-auto">{profile.taglineAlt}</span>
           </motion.div>
         </motion.div>
 

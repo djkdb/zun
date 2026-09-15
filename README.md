@@ -50,6 +50,18 @@ npm run deploy              # next build → wrangler pages deploy out
 
 로컬에서 배포 결과물을 미리 보려면 `npm run build && npm run preview:static` 을 실행하세요.
 
+## 3D 플레이그라운드 (`/play`)
+
+Three.js + React Three Fiber로 만든 드라이빙 월드입니다. 화살표/WASD(Shift 부스트, 모바일은 화면 패드)로 차를 몰고
+ABOUT · PROJECTS · CONTENT · CONTACT 존에 들어가면 정보 카드가 뜨고, Z·U·N 블록은 밀 수 있습니다.
+
+- `components/play/zones.ts` — 존 위치·색·포즈·연결 섹션, 타일 길, 나무 배치
+- `components/play/Car.tsx` — 아케이드 차량 모델(가속·마찰·조향·바디 롤). 물리 엔진 없이 튜닝된 값
+- `components/play/World.tsx` — 바닥, 큐브 나무, 빌보드(캔버스 텍스처), HOW TO PLAY 3D 텍스트
+- `components/play/Overlay.tsx` — 존 카드, Reset, 모바일 패드
+- 3D 텍스트 폰트: `public/fonts/Silkscreen-Regular.ttf` (ASCII만 사용 — 다른 글자를 쓰면 troika가 CDN에서 대체 폰트를 받아옵니다)
+- 콘솔에서 `__zunPlay.car.position.set(x, 0, z)` 로 순간이동할 수 있습니다.
+
 ## 콘텐츠 수정 위치 (여기만 고치면 됩니다)
 
 모든 문구·프로젝트·활동 데이터는 `data/` 폴더에 있습니다. 컴포넌트에는 내용을 하드코딩하지 않습니다.
@@ -104,6 +116,7 @@ write · present · search · tablet · cheers · laptop-floor
 ```
 app/                  layout(폰트·메타데이터), page, icon, opengraph-image, robots, sitemap
 components/
+  play/               3D 플레이그라운드 (R3F)
   layout/             SmoothScroll(Lenis), Section
   navigation/         Navbar(플로팅 내비 + 전체 메뉴)
   hero/               Hero, TerminalIntro

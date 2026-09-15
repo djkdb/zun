@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { scrollToId } from "@/lib/scroll";
 import { links } from "@/data/profile";
@@ -15,6 +16,8 @@ import { ALL_SECTIONS, NAV_ITEMS } from "./nav";
  * - [ MENU ] opens a full overlay (also the mobile nav)
  */
 export function Navbar() {
+  const pathname = usePathname();
+  const hidden = pathname?.startsWith("/play");
   const [visible, setVisible] = useState(false);
   const [active, setActive] = useState<string>("hero");
   const [open, setOpen] = useState(false);
@@ -92,6 +95,8 @@ export function Navbar() {
   };
 
   const shown = visible || open;
+
+  if (hidden) return null;
 
   return (
     <>
@@ -217,6 +222,11 @@ export function Navbar() {
               ))}
             </ul>
             <ul className="flex flex-wrap gap-x-6 gap-y-2 px-6 pb-8 font-mono text-xs tracking-[0.14em] text-fg-muted sm:px-12">
+              <li>
+                <a href="/play" className="text-accent-strong hover:text-fg" data-cursor="link">
+                  3D PLAYGROUND →
+                </a>
+              </li>
               {links
                 .filter((l) => !l.todo && l.href !== "/")
                 .map((l) => (
