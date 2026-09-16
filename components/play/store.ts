@@ -7,23 +7,36 @@ export type Inputs = { forward: boolean; back: boolean; left: boolean; right: bo
 
 export const inputs: Inputs = { forward: false, back: false, left: false, right: false, boost: false };
 
+/** Arena bounds and spawn, set once by the active scene. */
+export const world = {
+  radius: 92,
+  spawn: { x: 0, z: 8, heading: Math.PI },
+};
+
 export const car = {
   position: new THREE.Vector3(0, 0, 8),
-  heading: Math.PI, // radians, 0 = +z; the car starts facing the billboard (-z)
+  heading: Math.PI,
   speed: 0,
   steer: 0,
   /** set by the controller each frame */
   velocity: new THREE.Vector3(),
+  /** bumped by resetCar() so world props can re-initialise */
   resetToken: 0,
+  /** temporary speed multiplier — driving over a bug halves it */
+  drag: 1,
 };
 
-export const WORLD_RADIUS = 58;
+export function configureWorld(radius: number, spawn: { x: number; z: number; heading: number }) {
+  world.radius = radius;
+  world.spawn = spawn;
+}
 
 export function resetCar() {
-  car.position.set(0, 0, 8);
-  car.heading = Math.PI;
+  car.position.set(world.spawn.x, 0, world.spawn.z);
+  car.heading = world.spawn.heading;
   car.speed = 0;
   car.steer = 0;
+  car.drag = 1;
   car.velocity.set(0, 0, 0);
   car.resetToken++;
 }

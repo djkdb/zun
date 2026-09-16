@@ -50,17 +50,29 @@ npm run deploy              # next build → wrangler pages deploy out
 
 로컬에서 배포 결과물을 미리 보려면 `npm run build && npm run preview:static` 을 실행하세요.
 
-## 3D 플레이그라운드 (`/play`)
+## 3D 플레이그라운드 — TERMINAL CITY (`/play`)
 
-Three.js + React Three Fiber로 만든 드라이빙 월드입니다. 화살표/WASD(Shift 부스트, 모바일은 화면 패드)로 차를 몰고
-ABOUT · PROJECTS · CONTENT · CONTACT 존에 들어가면 정보 카드가 뜨고, Z·U·N 블록은 밀 수 있습니다.
+Three.js + React Three Fiber로 만든 드라이빙 월드. **바닥이 거대한 코드 에디터**입니다.
+줄 번호와 구문 강조가 그려진 `zun.ts` 위를 차로 달리며,
 
-- `components/play/zones.ts` — 존 위치·색·포즈·연결 섹션, 타일 길, 나무 배치
-- `components/play/Car.tsx` — 아케이드 차량 모델(가속·마찰·조향·바디 롤). 물리 엔진 없이 튜닝된 값
-- `components/play/World.tsx` — 바닥, 큐브 나무, 빌보드(캔버스 텍스처), HOW TO PLAY 3D 텍스트
-- `components/play/Overlay.tsx` — 존 카드, Reset, 모바일 패드
-- 3D 텍스트 폰트: `public/fonts/Silkscreen-Regular.ttf` (ASCII만 사용 — 다른 글자를 쓰면 troika가 CDN에서 대체 폰트를 받아옵니다)
-- 콘솔에서 `__zunPlay.car.position.set(x, 0, z)` 로 순간이동할 수 있습니다.
+- 파란 하이라이트가 켜진 줄(ZONE 주석)에 올라서면 그 줄이 "실행"되어 ABOUT / PROJECTS / CONTENT / CONTACT 카드가 열립니다
+- 떠 있는 `{ } ( ) ; => <> $` 토큰 8개를 모으면 `ALL TESTS PASSED`
+- 빨간 물결선(버그)을 밟으면 속도가 절반으로 떨어지고 `TypeError`가 뜹니다
+- 각 존 줄 끝에는 그 맥락에 맞는 포즈의 ZUN이 서 있습니다
+
+조작은 화살표/WASD(Shift 부스트), 모바일은 화면 패드입니다.
+
+| 파일 | 역할 |
+| --- | --- |
+| `components/play/code.ts` | 바닥에 그려지는 코드 자체. 줄 추가·수정, 존 줄 번호(`ZONE_LINES`), 수집 토큰(`TOKENS`), 버그 구간(`BUGS`)이 모두 여기 |
+| `components/play/World.tsx` | 에디터 바닥(캔버스 텍스처), 존 레인, 스카이라인 타워, 터미널 빌보드 |
+| `components/play/zones.ts` | 줄/열 좌표 → 월드 좌표 변환과 존 정의 |
+| `components/play/Tokens.tsx` | 토큰 수집과 버그 판정 |
+| `components/play/Car.tsx` | 아케이드 주행 모델(가속·마찰·조향·바디 롤)과 차량 셸 |
+| `components/play/Overlay.tsx` | 에디터 크롬 HUD, 존 카드, Reset, 모바일 패드 |
+
+3D 텍스트 폰트는 `public/fonts/Silkscreen-Regular.ttf`이며 **ASCII만** 씁니다(다른 글자를 쓰면 troika가 CDN에서 대체 폰트를 받아옵니다).
+바닥 코드는 캔버스에 그리므로 한글·기호를 써도 됩니다. 콘솔에서 `__zunPlay.car.position.set(x, 0, z)` 로 순간이동할 수 있습니다.
 
 ## 콘텐츠 수정 위치 (여기만 고치면 됩니다)
 

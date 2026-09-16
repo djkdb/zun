@@ -8,7 +8,7 @@ const N = 60;
 const COLORS = ["#3b82f6", "#60a5fa", "#fbbf24", "#f472b6", "#34d399", "#f2f4fa"];
 
 export interface ConfettiHandle {
-  burst: (x: number, z: number) => void;
+  burst: (x: number, z: number, count?: number) => void;
 }
 
 /** One instanced burst of tiny cubes; `burst()` relaunches it at a world position. */
@@ -20,8 +20,9 @@ export const Confetti = forwardRef<ConfettiHandle>(function Confetti(_, ref) {
   const dummy = useRef(new THREE.Object3D());
 
   useImperativeHandle(ref, () => ({
-    burst(x, z) {
-      parts.current.forEach((pt) => {
+    burst(x, z, count = N) {
+      parts.current.forEach((pt, i) => {
+        if (i >= count) return;
         pt.p.set(x, 1, z);
         const a = Math.random() * Math.PI * 2;
         const s = 4 + Math.random() * 6;
