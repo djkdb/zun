@@ -36,6 +36,22 @@ export const profile = {
   narrative: ["DISCOVER", "BUILD", "SHARE", "LEARN", "BUILD AGAIN"],
   siteUrl: "https://zun-1vu.pages.dev",
   description: "Software student building with AI, code, and curiosity.",
+
+  /**
+   * TRACTION — 확인된 수치만. 인스타그램 인사이트와 Cloudflare 배포 목록에서
+   * 직접 읽은 값이고, 추정치는 넣지 않습니다.
+   * `since`는 @zun_it_ 프로필의 "26.8.1~" 표기 기준입니다.
+   */
+  traction: {
+    since: "2026.08.01",
+    stats: [
+      { label: "팔로워", value: "1,543", note: "@zun_it_ · 한 달 반" },
+      { label: "최고 조회수", value: "12.5만", note: "컴활 마스터 웹앱" },
+      { label: "배포한 것", value: "13", note: "Cloudflare · 살아 있는 주소" },
+      { label: "게시물", value: "33", note: "만드는 과정 기록" },
+    ],
+    line: "0에서 시작해 한 달 반. 만든 걸 올린 게 아니라, 필요한 걸 만들어 올렸습니다.",
+  },
 };
 
 /**

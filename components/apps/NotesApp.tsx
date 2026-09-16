@@ -4,7 +4,7 @@ import { useState } from "react";
 import { future, loopSteps, profile } from "@/data";
 import { useOS } from "@/components/os/OSProvider";
 import type { AppWindowProps } from "@/components/os/types";
-import { AppSplit, SideGroup, SideItem } from "./shell";
+import { AppSplit, ScrollPane, SideGroup, SideItem } from "./shell";
 
 type NoteId = "loop" | "future" | "help" | "principles";
 
@@ -30,7 +30,7 @@ export function NotesApp({ win }: AppWindowProps) {
         </>
       }
     >
-      <div className="min-h-0 flex-1 overflow-auto px-7 py-6 max-[560px]:px-4">
+      <ScrollPane label="메모 내용" className="px-7 py-6 max-[560px]:px-4">
         {id === "loop" && (
           <>
             <h2 className="text-lg font-semibold tracking-tight text-fg">BUILD → FAIL → LEARN → BUILD AGAIN</h2>
@@ -107,7 +107,7 @@ export function NotesApp({ win }: AppWindowProps) {
             </button>
           </>
         )}
-      </div>
+      </ScrollPane>
     </AppSplit>
   );
 }

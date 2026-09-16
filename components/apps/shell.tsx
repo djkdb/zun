@@ -5,10 +5,42 @@ import type { ReactNode } from "react";
 /** Shared chrome pieces so every app reads as the same OS, not twelve designs. */
 
 export function AppSplit({ sidebar, children }: { sidebar: ReactNode; children: ReactNode }) {
+  /**
+   * `grid-rows-[minmax(0,1fr)]` is load-bearing: without it the single implicit
+   * row is auto-sized to its content, grows past the window, and the window
+   * body (overflow-hidden) clips it — so nothing scrolls. Pinning the row to the
+   * container height lets the panes below own their own scrollbars.
+   */
   return (
-    <div className="grid h-full grid-cols-[186px_1fr] max-[760px]:grid-cols-1">
-      <aside className="overflow-auto border-r border-line bg-bg-1/50 p-2 max-[760px]:hidden">{sidebar}</aside>
-      <div className="flex min-w-0 flex-col">{children}</div>
+    <div className="grid h-full grid-cols-[186px_1fr] grid-rows-[minmax(0,1fr)] max-[760px]:grid-cols-1">
+      <aside
+        tabIndex={0}
+        aria-label="사이드바"
+        className="min-h-0 overflow-auto border-r border-line bg-bg-1/50 p-2 max-[760px]:hidden"
+      >
+        {sidebar}
+      </aside>
+      <div className="flex min-h-0 min-w-0 flex-col">{children}</div>
+    </div>
+  );
+}
+
+/**
+ * A pane that owns a scrollbar. It is focusable on purpose: a region a mouse
+ * can scroll must also be reachable by keyboard (WCAG 2.1.1), and axe flags
+ * `scrollable-region-focusable` otherwise.
+ */
+export function ScrollPane({
+  children, label, className = "",
+}: { children: ReactNode; label: string; className?: string }) {
+  return (
+    <div
+      tabIndex={0}
+      role="region"
+      aria-label={label}
+      className={`min-h-0 flex-1 overflow-auto ${className}`}
+    >
+      {children}
     </div>
   );
 }

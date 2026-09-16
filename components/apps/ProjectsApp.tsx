@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { projects } from "@/data";
 import type { AppWindowProps } from "@/components/os/types";
-import { AppSplit, Chip, Field, SideGroup, SideItem, Todo } from "./shell";
+import { AppSplit, Chip, Field, ScrollPane, SideGroup, SideItem, Todo } from "./shell";
 
 export function ProjectsApp({ win }: AppWindowProps) {
   const [id, setId] = useState(win?.arg ?? projects[0]?.id);
@@ -26,7 +26,7 @@ export function ProjectsApp({ win }: AppWindowProps) {
         </>
       }
     >
-      <div className="min-h-0 flex-1 overflow-auto">
+      <ScrollPane label={`${p.title} 상세`}>
         <header className="flex items-start gap-4 border-b border-line px-6 pb-5 pt-5 max-[560px]:px-4">
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
@@ -73,7 +73,7 @@ export function ProjectsApp({ win }: AppWindowProps) {
             )}
           </div>
         </div>
-      </div>
+      </ScrollPane>
     </AppSplit>
   );
 }

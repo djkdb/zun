@@ -21,6 +21,24 @@ export function About() {
       </div>
 
       <div className="overflow-auto px-6 py-5">
+        <section aria-label="성장 기록" className="mb-5">
+          <p className="font-mono text-[10.5px] tracking-wider text-fg-dim">
+            {profile.traction.since} 시작 · 지금까지
+          </p>
+          <div className="mt-2 grid grid-cols-4 gap-px overflow-hidden rounded-[4px] border border-line bg-line max-[560px]:grid-cols-2">
+            {profile.traction.stats.map((s) => (
+              <div key={s.label} className="bg-bg-2 px-2.5 py-2.5">
+                <p className="font-mono text-[10px] tracking-wider text-fg-dim">{s.label}</p>
+                <p className="mt-0.5 text-lg font-semibold tabular-nums leading-none text-fg">{s.value}</p>
+                <p className="mt-1 text-[10.5px] leading-tight text-fg-dim">{s.note}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-2.5 border-l-2 border-accent pl-3 text-[12.5px] leading-relaxed text-fg-muted">
+            {profile.traction.line}
+          </p>
+        </section>
+
         <Row label="이름" value={`${profile.name} (${profile.brand})`} />
         <Row label="역할" value={profile.formula} />
         <Row label="학교" value={profile.school} />

@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { activities, contentItems, journey, projects } from "@/data";
 import { useOS } from "@/components/os/OSProvider";
 import type { AppWindowProps } from "@/components/os/types";
-import { AppSplit, Chip, Field, SearchBox, Seg, SideGroup, SideItem, Todo, Toolbar } from "./shell";
+import { AppSplit, Chip, Field, ScrollPane, SearchBox, Seg, SideGroup, SideItem, Todo, Toolbar } from "./shell";
 
 type ViewId = "projects" | "drafts" | "journey" | "activities" | "content";
 
@@ -108,7 +108,7 @@ export function Finder({ win }: AppWindowProps) {
         </div>
       </Toolbar>
 
-      <div className="min-h-0 flex-1 overflow-auto">
+      <ScrollPane label="항목 목록">
         {filtered.length === 0 && <p className="p-10 text-center text-sm text-fg-dim">결과 없음</p>}
 
         {mode === "list" && filtered.length > 0 && (
@@ -168,7 +168,7 @@ export function Finder({ win }: AppWindowProps) {
             ))}
           </div>
         )}
-      </div>
+      </ScrollPane>
 
       {current && (
         <div className="max-h-[42%] flex-none overflow-auto border-t border-line bg-bg-1/50 px-4 pb-5 pt-3.5">
