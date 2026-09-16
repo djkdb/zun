@@ -113,12 +113,12 @@ function SpotlightPanel() {
                   onPointerEnter={() => setSel(i)}
                   onClick={() => choose(h)}
                   className={`flex w-full items-center gap-3 px-4 py-2 text-left text-[13.5px] ${
-                    i === sel ? "bg-accent text-white" : "text-fg"
+                    i === sel ? "bg-select text-white" : "text-fg"
                   }`}
                 >
                   <span aria-hidden className="w-6 flex-none text-center text-lg">{h.icon}</span>
                   <span className="flex-1 truncate">{h.title}</span>
-                  <span className={`font-mono text-[10.5px] ${i === sel ? "text-white/80" : "text-fg-dim"}`}>
+                  <span className={`font-mono text-[10.5px] ${i === sel ? "text-white" : "text-fg-dim"}`}>
                     {h.kind}
                   </span>
                 </button>

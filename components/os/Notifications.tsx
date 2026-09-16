@@ -6,7 +6,7 @@ import { useOS } from "./OSProvider";
 export function Notifications() {
   const os = useOS();
   return (
-    <div className="pointer-events-none absolute right-2.5 top-9 z-[9800] grid w-[300px] max-w-[calc(100%-1.25rem)] gap-2">
+    <div className="pointer-events-none absolute right-2.5 top-9 z-[9800] grid w-[300px] max-w-[calc(100%-1.25rem)] gap-2 max-[760px]:bottom-[4.5rem] max-[760px]:left-2.5 max-[760px]:top-auto max-[760px]:w-auto">
       <AnimatePresence>
         {os.notifications.map((n) => (
           <motion.button

@@ -62,7 +62,7 @@ export function ContextMenu() {
             type="button"
             role="menuitem"
             onClick={() => { setPos(null); it.run(); }}
-            className="block w-full rounded-md px-2.5 py-1.5 text-left text-[13px] text-fg hover:bg-accent hover:text-white"
+            className="block w-full rounded-md px-2.5 py-1.5 text-left text-[13px] text-fg hover:bg-select hover:text-white"
           >
             {it.label}
           </button>

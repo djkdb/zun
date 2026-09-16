@@ -128,7 +128,7 @@ export function Finder({ win }: AppWindowProps) {
                   onPointerDown={() => setSel(i)}
                   onDoubleClick={() => r.detail.open?.()}
                   className={`cursor-default border-b border-line/60 ${
-                    i === sel ? "bg-accent text-white" : "hover:bg-bg-3/40"
+                    i === sel ? "bg-select text-white" : "hover:bg-bg-3/40"
                   }`}
                 >
                   <td className="px-3.5 py-2">
@@ -137,13 +137,13 @@ export function Finder({ win }: AppWindowProps) {
                       <span className="truncate">{r.name}</span>
                     </span>
                   </td>
-                  <td className={`px-3.5 py-2 font-mono text-[11.5px] ${i === sel ? "text-white/80" : "text-fg-dim"}`}>
+                  <td className={`px-3.5 py-2 font-mono text-[11.5px] ${i === sel ? "text-white" : "text-fg-dim"}`}>
                     {r.kind === "TODO" ? <Todo /> : r.kind}
                   </td>
-                  <td className={`px-3.5 py-2 text-[12px] max-[760px]:hidden ${i === sel ? "text-white/85" : "text-fg-dim"}`}>
+                  <td className={`px-3.5 py-2 text-[12px] max-[760px]:hidden ${i === sel ? "text-white" : "text-fg-dim"}`}>
                     <span className="line-clamp-1">{r.meta}</span>
                   </td>
-                  <td className={`px-3.5 py-2 font-mono text-[11.5px] max-[760px]:hidden ${i === sel ? "text-white/80" : "text-fg-dim"}`}>
+                  <td className={`px-3.5 py-2 font-mono text-[11.5px] max-[760px]:hidden ${i === sel ? "text-white" : "text-fg-dim"}`}>
                     {r.date}
                   </td>
                 </tr>
@@ -160,7 +160,7 @@ export function Finder({ win }: AppWindowProps) {
                 type="button"
                 onPointerDown={() => setSel(i)}
                 onDoubleClick={() => r.detail.open?.()}
-                className={`rounded-lg px-1.5 py-3 text-center ${i === sel ? "bg-accent text-white" : "hover:bg-bg-3/40"}`}
+                className={`rounded-lg px-1.5 py-3 text-center ${i === sel ? "bg-select text-white" : "hover:bg-bg-3/40"}`}
               >
                 <span aria-hidden className="block text-[36px] leading-none">{r.icon}</span>
                 <span className="mt-1.5 block text-[12px] leading-tight">{r.name}</span>

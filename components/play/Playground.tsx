@@ -24,7 +24,7 @@ export interface GameState {
 const SPAWN = { x: -28, z: lineZ(4), heading: 0 };
 
 /** TERMINAL CITY — drive the editor floor. Canvas + HTML overlay. */
-export function Playground() {
+export function Playground({ embedded }: { embedded?: boolean } = {}) {
   const [zone, setZone] = useState<string | null>(null);
   const [game, setGame] = useState<GameState>({ collected: 0, total: TOKENS.length, bugs: 0, passed: false });
   const [flash, setFlash] = useState<string | null>(null);
@@ -110,7 +110,7 @@ export function Playground() {
         </Suspense>
         <FollowCamera />
       </Canvas>
-      <Overlay zone={zone} game={game} flash={flash} onReset={onReset} />
+      <Overlay embedded={embedded} zone={zone} game={game} flash={flash} onReset={onReset} />
     </div>
   );
 }

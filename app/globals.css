@@ -20,6 +20,8 @@
   --accent-strong: #60a5fa;
   --accent-soft: rgba(59, 130, 246, 0.14);
   --accent-glow: rgba(59, 130, 246, 0.45);
+  /* selection fill — white text on this reads 5.7:1, unlike --accent's 3.67:1 */
+  --select: #0a63c9;
 
   --warn: #fbbf24;          /* secondary accent — used sparingly (status dots) */
   --ok: #34d399;            /* secondary accent — used sparingly (status dots) */
@@ -44,6 +46,7 @@
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-accent-soft: var(--accent-soft);
+  --color-select: var(--select);
   --color-warn: var(--warn);
   --color-ok: var(--ok);
 

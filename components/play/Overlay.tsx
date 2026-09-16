@@ -117,11 +117,14 @@ export function Overlay({
   game,
   flash,
   onReset,
+  embedded,
 }: {
   zone: string | null;
   game: GameState;
   flash: string | null;
   onReset: () => void;
+  /** running inside a ZUN OS window — the window chrome already has a close button */
+  embedded?: boolean;
 }) {
   const coarse = useMediaQuery("(pointer: coarse)");
   const isError = !!flash && !game.passed;
@@ -131,9 +134,13 @@ export function Overlay({
       {/* title bar */}
       <div className="flex items-start justify-between gap-2 p-3 sm:p-4">
         <div className="pointer-events-auto bg-bg-1/90 px-3 py-2 font-mono backdrop-blur-sm pixel-border">
-          <Link href="/" className="font-pixel text-sm text-fg hover:text-accent-strong">
-            ← ZUN
-          </Link>
+          {embedded ? (
+            <p className="font-pixel text-sm text-fg">ZUN</p>
+          ) : (
+            <Link href="/" className="font-pixel text-sm text-fg hover:text-accent-strong">
+              ← ZUN
+            </Link>
+          )}
           <p className="mt-0.5 text-[10px] tracking-[0.2em] text-fg-dim">TERMINAL CITY · zun.ts</p>
           {coarse && <p className="mt-1 text-[10px] leading-snug tracking-[0.1em] text-fg-muted">패드로 운전 · 강조된 줄에서 실행</p>}
         </div>

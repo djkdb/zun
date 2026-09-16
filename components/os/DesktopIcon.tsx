@@ -30,7 +30,7 @@ export function DesktopIcon({ appId, index }: { appId: AppId; index: number }) {
       }}
       style={{ top: index * 88 }}
       className={`absolute right-1.5 w-24 rounded-lg px-1 pb-2 pt-1.5 text-center transition-colors max-[760px]:static max-[760px]:w-full ${
-        selected ? "bg-accent/55 outline outline-1 outline-white/30" : "hover:bg-white/10"
+        selected ? "bg-select/75 outline outline-1 outline-white/35" : "hover:bg-white/10"
       }`}
     >
       <span aria-hidden className="block text-[34px] leading-none drop-shadow-[0_3px_7px_rgba(0,0,0,.5)]">

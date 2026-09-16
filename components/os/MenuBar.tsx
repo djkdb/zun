@@ -128,7 +128,7 @@ export function MenuBar() {
             onPointerDown={(e) => { e.stopPropagation(); setOpen(open === m.id ? null : m.id); }}
             onPointerEnter={() => open && setOpen(m.id)}
             className={`rounded px-2.5 py-0.5 leading-5 ${i === 0 ? "font-bold" : ""} ${
-              open === m.id ? "bg-accent text-white" : "hover:bg-white/10"
+              open === m.id ? "bg-select text-white" : "hover:bg-white/10"
             } ${i > 0 ? "max-[760px]:hidden" : ""}`}
           >
             {i === 0 ? (app?.name ?? "Finder") : m.label}
@@ -148,7 +148,7 @@ export function MenuBar() {
                     role="menuitem"
                     disabled={it.disabled}
                     onClick={() => { setOpen(null); it.run?.(); }}
-                    className="flex w-full items-center gap-4 rounded-md px-2.5 py-1.5 text-left text-[13px] enabled:hover:bg-accent enabled:hover:text-white disabled:text-fg-dim"
+                    className="flex w-full items-center gap-4 rounded-md px-2.5 py-1.5 text-left text-[13px] enabled:hover:bg-select enabled:hover:text-white disabled:text-fg-dim"
                   >
                     <span className="flex-1">{it.label}</span>
                     {it.shortcut && <span className="font-mono text-[11px] opacity-70">{it.shortcut}</span>}
