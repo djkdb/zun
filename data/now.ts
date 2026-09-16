@@ -10,26 +10,26 @@ export const nowItems: NowItem[] = [
     id: "portfolio",
     label: "ZUN PORTFOLIO",
     status: "shipping",
-    note: "이 사이트. 캐릭터와 인터랙션을 다듬는 중.",
+    note: "흩어진 배포 20여 개를 하나의 OS로 묶는 중.",
   },
   {
     id: "ai-experiments",
     label: "AI EXPERIMENTS",
     status: "active",
-    note: "생성형 AI를 개발 워크플로우에 넣어보는 실험.",
+    note: "기획부터 배포까지 AI와 같이 만들고, 프롬프트와 실패까지 남기는 중.",
   },
   {
     id: "content",
     label: "CONTENT",
     status: "active",
-    note: "@zun_it_ 에 만드는 과정을 기록.",
+    note: "@zun_it_ · 8월 1일 시작, 게시물 33개 / 팔로워 1,543명.",
   },
   {
     id: "startup",
     label: "STARTUP",
     status: "exploring",
-    note: "사람들이 실제로 쓰는 제품이 무엇인지 탐색.",
+    note: "교내 창업동아리 · 모두의창업 신속심사 통과. 실제로 쓰이는 제품이 무엇인지 탐색 중.",
   },
 ];
 
-export const nowUpdated = "2026-09"; // TODO(ZUN): bump when you edit this file
+export const nowUpdated = "2026-09"; // 이 파일을 고칠 때마다 함께 올려주세요

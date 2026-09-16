@@ -6,14 +6,14 @@ export const profile = {
   name: "이성준",
   handle: "@zun_it_",
   tagline: "I BUILD THINGS.",
-  taglineAlt: "BUILDING IN PUBLIC.",
+  taglineAlt: "ZERO → UP → NEXT.",
   formula: "Software × AI × Product",
   roles: ["Software Student", "AI Builder", "Creator", "Explorer"],
-  school: "충북대학교 소프트웨어학부",
+  school: "충북대학교 소프트웨어학부 · 인공지능 전공",
   intro:
-    "아이디어를 빠르게 프로토타입으로 만들고, 실제로 사용 가능한 형태까지 가져가는 것을 좋아합니다.",
+    "03년생, 충북대 소프트웨어학부에서 인공지능을 전공합니다. 아이디어를 빠르게 프로토타입으로 만들고 실제로 배포해서 쓰이는 형태까지 가져가는 것을 좋아합니다.",
   intro2:
-    "AI를 도구로 삼아 실험하고, 만든 것을 공개하고, 피드백으로 다시 만듭니다.",
+    "AI를 도구로 삼아 직접 만들고, 써 보고, 기록합니다. 만든 것은 @zun_it_에 올리고 피드백으로 다시 만듭니다.",
   interests: [
     "Software",
     "AI",
@@ -45,6 +45,7 @@ export const profile = {
 export const links: Link[] = [
   { label: "GitHub", href: "https://github.com/djkdb" },
   { label: "Instagram", href: "https://www.instagram.com/zun_it_/" },
+  { label: "Links", href: "https://litt.ly/zun_it_" },
   { label: "Email", href: "mailto:", todo: true }, // TODO: contact email
   { label: "Portfolio", href: "/" },
 ];
