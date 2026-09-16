@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
+import { ZunMark } from "./ZunMark";
 
 export function LoginScreen({ reduce, onEnter }: { reduce: boolean; onEnter: () => void }) {
   return (
@@ -13,15 +14,13 @@ export function LoginScreen({ reduce, onEnter }: { reduce: boolean; onEnter: () 
       className="absolute inset-0 z-[9950] flex flex-col items-center justify-center gap-4 bg-bg-1/70 px-6 backdrop-blur-2xl"
     >
       <motion.span
-        aria-hidden
         animate={reduce ? undefined : { y: [0, -5, 0] }}
         transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
-        className="grid h-24 w-24 place-items-center rounded-3xl border border-line-strong bg-bg-2/70 font-pixel text-4xl leading-none text-fg shadow-2xl backdrop-blur-xl"
+        className="overflow-hidden rounded-[18px] border border-line-strong shadow-2xl"
       >
-        Z
+        <ZunMark size={112} />
       </motion.span>
 
-      <h1 className="font-pixel text-2xl tracking-widest text-fg">{profile.brand}</h1>
       <p className="font-mono text-xs tracking-[0.2em] text-fg-muted">{profile.formula}</p>
 
       <button

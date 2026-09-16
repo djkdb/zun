@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { APPS } from "./registry";
 import { useOS } from "./OSProvider";
+import { ZunMark } from "./ZunMark";
 
 interface Item { label: string; shortcut?: string; run?: () => void; disabled?: boolean }
 type Menu = { id: string; label: string; items: (Item | "sep")[] };
@@ -105,12 +106,7 @@ export function MenuBar() {
       ref={barRef}
       className="absolute inset-x-0 top-0 z-[9000] flex h-[30px] items-center gap-px border-b border-white/5 bg-bg/45 px-2 text-[12.5px] text-fg backdrop-blur-xl backdrop-saturate-150"
     >
-      <span
-        aria-hidden
-        className="mr-2 flex-none rounded-[3px] bg-accent px-1.5 py-[3px] font-pixel text-[9px] leading-none tracking-[0.12em] text-bg"
-      >
-        ZUN
-      </span>
+      <ZunMark size={17} plate={false} className="mr-2 flex-none" />
       {menus.map((m, i) => (
         <div key={m.id} className="relative">
           <button

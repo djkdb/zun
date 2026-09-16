@@ -3,6 +3,7 @@
 import { links, profile } from "@/data/profile";
 import { nowItems, nowUpdated } from "@/data/now";
 import { useOS } from "@/components/os/OSProvider";
+import { ZunMark } from "@/components/os/ZunMark";
 import { Chip } from "./shell";
 
 /** "About This Mac", reinterpreted as "About ZUN". */
@@ -11,10 +12,7 @@ export function About() {
   return (
     <div className="grid h-full grid-cols-[210px_1fr] max-[560px]:grid-cols-1">
       <div className="flex flex-col items-center justify-center gap-3 border-r border-line bg-bg-1/50 px-4 py-6 max-[560px]:border-b max-[560px]:border-r-0 max-[560px]:py-5">
-        <span className="grid h-20 w-20 place-items-center rounded-2xl border border-line-strong bg-bg-3/60 font-pixel text-3xl leading-none text-fg">
-          Z
-        </span>
-        <p className="font-pixel text-base tracking-widest text-fg">{profile.brand}</p>
+        <ZunMark size={84} className="rounded-xl border border-line-strong" />
         <p className="text-center font-mono text-[10.5px] leading-relaxed text-fg-dim">
           ZUN OS 1.0
           <br />
