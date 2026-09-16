@@ -5,7 +5,6 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/interactions/Reveal";
 import { Panel } from "@/components/ui/Panel";
 import { Tag, TodoTag } from "@/components/ui/Tag";
-import { ZunCharacter } from "@/components/character";
 import { ContentGallery } from "./ContentGallery";
 
 /** WHAT I SHARE — creator side of ZUN (@zun_it_). */
@@ -36,9 +35,6 @@ export function Content() {
             </ul>
           </Reveal>
         </div>
-        <Reveal delay={0.1} className="hidden md:block">
-          <ZunCharacter pose="phone" size={120} />
-        </Reveal>
       </div>
 
       <div className="mt-10 md:mt-14">
@@ -47,12 +43,7 @@ export function Content() {
 
       <Reveal className="mt-10 md:mt-14">
         <Panel className="grid gap-4 md:grid-cols-[auto_minmax(0,1fr)] md:items-center">
-          <div className="flex items-center gap-4">
-            <div className="md:hidden">
-              <ZunCharacter pose="phone" size={64} shadow={false} />
-            </div>
-            <h3 className="section-title text-xl text-fg md:text-2xl">{contentBrand.insightTitle}</h3>
-          </div>
+          <h3 className="section-title text-xl text-fg md:text-2xl">{contentBrand.insightTitle}</h3>
           <div className="flex flex-wrap items-center gap-2 md:border-l md:border-line md:pl-6">
             <p className="prose-ko text-fg-muted">
               {isTodo(contentBrand.insight) ? "어떤 콘텐츠가 왜 반응이 좋았는지, 확인된 데이터가 생기면 여기에 적습니다." : contentBrand.insight}

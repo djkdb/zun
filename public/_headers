@@ -10,6 +10,6 @@
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Character sprites & fonts
-/character/*
-  Cache-Control: public, max-age=604800
+# Wallpaper: re-compressed at build time, safe to cache hard
+/wallpaper.webp
+  Cache-Control: public, max-age=2592000

@@ -30,7 +30,6 @@ export const projects: Project[] = [
     github: { label: "djkdb/zunran", href: "https://github.com/djkdb/zunran" },
     year: "2026",
     themes: ["software", "product", "experiment"],
-    pose: "night",
   },
   {
     id: "k-history",
@@ -48,7 +47,6 @@ export const projects: Project[] = [
     github: { label: "djkdb/k-history", href: "https://github.com/djkdb/k-history" },
     year: "2026",
     themes: ["web", "product", "software"],
-    pose: "books",
   },
   {
     id: "zunto",
@@ -66,7 +64,6 @@ export const projects: Project[] = [
     github: { label: "djkdb/zunto", href: "https://github.com/djkdb/zunto" },
     year: "2026",
     themes: ["web", "product"],
-    pose: "present",
   },
   {
     id: "ailab",
@@ -84,7 +81,6 @@ export const projects: Project[] = [
     github: { label: "djkdb/ailab", href: "https://github.com/djkdb/ailab" },
     year: "2026",
     themes: ["ai", "product", "content"],
-    pose: "idea",
   },
   {
     id: "zunme",
@@ -101,7 +97,6 @@ export const projects: Project[] = [
     github: { label: "djkdb/zunme", href: "https://github.com/djkdb/zunme" },
     year: "2026",
     themes: ["software", "product"],
-    pose: "run",
   },
   {
     id: "star-movie",
@@ -119,7 +114,6 @@ export const projects: Project[] = [
     github: { label: "djkdb/star-movie", href: "https://github.com/djkdb/star-movie" },
     year: "2026",
     themes: ["web", "experiment", "software"],
-    pose: "telescope",
   },
   {
     id: "zunge",
@@ -136,7 +130,6 @@ export const projects: Project[] = [
     github: { label: "djkdb/zunge", href: "https://github.com/djkdb/zunge" },
     year: "2026",
     themes: ["web", "product"],
-    pose: "phone",
   },
   {
     id: "travle",
@@ -153,7 +146,6 @@ export const projects: Project[] = [
     github: { label: "djkdb/travle", href: "https://github.com/djkdb/travle" },
     year: "2026",
     themes: ["web", "product"],
-    pose: "backpack",
   },
   {
     id: "zun-portfolio",
@@ -170,7 +162,6 @@ export const projects: Project[] = [
     github: { label: "djkdb/zun", href: "https://github.com/djkdb/zun" },
     year: "2026",
     themes: ["web", "software", "experiment"],
-    pose: "code",
   },
 
   /* ---- 배포는 확인됐지만 설명이 아직 없는 것들 ---- */
@@ -188,7 +179,6 @@ export const projects: Project[] = [
     year: "2026",
     themes: ["web", "experiment"],
     draft: true,
-    pose: "tea",
   },
   {
     id: "zunrpg",
@@ -204,7 +194,6 @@ export const projects: Project[] = [
     year: "2026",
     themes: ["software", "experiment"],
     draft: true,
-    pose: "experiment",
   },
   {
     id: "cavero",
@@ -220,7 +209,6 @@ export const projects: Project[] = [
     year: "2026",
     themes: ["web", "product"],
     draft: true,
-    pose: "write",
   },
   {
     id: "zungong",
@@ -236,7 +224,6 @@ export const projects: Project[] = [
     year: "2026",
     themes: ["web"],
     draft: true,
-    pose: "search",
   },
   {
     id: "zuntudy",
@@ -251,7 +238,6 @@ export const projects: Project[] = [
     year: "2026",
     themes: ["web", "product"],
     draft: true,
-    pose: "book",
   },
   {
     id: "capme",
@@ -268,6 +254,5 @@ export const projects: Project[] = [
     year: "2026",
     themes: ["web", "software"],
     draft: true,
-    pose: "tablet",
   },
 ];

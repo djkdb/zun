@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { Section } from "@/components/layout/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/interactions/Reveal";
-import { ZunCharacter } from "@/components/character";
 
 /* ─────────────────────────────────────────────
    Layout constants (desktop row)
@@ -86,7 +85,7 @@ function StepCard({ step, index, isLast }: { step: LoopStep; index: number; isLa
       </div>
 
       <div className="mt-5 mb-4 flex items-end justify-center self-stretch">
-        <ZunCharacter pose={step.pose} size={88} />
+        
       </div>
 
       <h3 id={`loop-step-${step.key}`} className="font-pixel text-base leading-snug text-fg md:text-lg">

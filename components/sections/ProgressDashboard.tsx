@@ -4,7 +4,6 @@ import { usePrefersReducedMotion } from "@/lib/hooks";
 import { nowItems, nowUpdated, profile } from "@/data";
 import type { NowItem } from "@/data/types";
 import { cn } from "@/lib/utils";
-import { ZunCharacter } from "@/components/character";
 
 const STATUS: Record<NowItem["status"], { label: string; dot: string; text: string }> = {
   active: { label: "ACTIVE", dot: "bg-ok", text: "text-ok" },
@@ -85,7 +84,7 @@ export function ProgressDashboard() {
       </div>
 
       <div className="hidden md:block">
-        <ZunCharacter pose="night" size={132} />
+        
       </div>
 
       {/* ticker */}

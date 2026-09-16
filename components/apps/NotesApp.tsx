@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { future, loopSteps, profile } from "@/data";
-import { ZunCharacter } from "@/components/character";
 import { useOS } from "@/components/os/OSProvider";
 import type { AppWindowProps } from "@/components/os/types";
 import { AppSplit, SideGroup, SideItem } from "./shell";
@@ -37,10 +36,7 @@ export function NotesApp({ win }: AppWindowProps) {
             <h2 className="text-lg font-semibold tracking-tight text-fg">BUILD → FAIL → LEARN → BUILD AGAIN</h2>
             <div className="mt-5 grid gap-4">
               {loopSteps.map((s) => (
-                <div key={s.key} className="flex items-start gap-4 border-t border-line pt-4">
-                  <div className="flex-none max-[560px]:hidden">
-                    <ZunCharacter pose={s.pose} size={54} idle={!os.reduce} shadow={false} />
-                  </div>
+                <div key={s.key} className="border-t border-line pt-4">
                   <div className="min-w-0">
                     <p className="font-pixel text-xs tracking-widest text-accent-strong">{s.title}</p>
                     <p className="mt-1.5 text-[13.5px] leading-relaxed text-fg-muted">{s.body}</p>
@@ -95,8 +91,8 @@ export function NotesApp({ win }: AppWindowProps) {
           <>
             <h2 className="text-lg font-semibold tracking-tight text-fg">ZUN OS 사용법</h2>
             <ul className="mt-4 grid gap-2 text-[13.5px] text-fg-muted">
-              <li><Key>⌘K</Key> Spotlight 검색 — 프로젝트·앱·콘텐츠 전부</li>
-              <li><Key>⌘W</Key> 창 닫기 · <Key>⌘M</Key> 최소화 · <Key>⌘N</Key> 새 Finder 창</li>
+              <li><Key>⌘K</Key> 찾기 — 프로젝트·앱·콘텐츠 전부</li>
+              <li><Key>⌘W</Key> 창 닫기 · <Key>⌘M</Key> 최소화 · <Key>⌘N</Key> 새 보관함 창</li>
               <li><Key>Esc</Key> 열린 창 닫기 / 검색 취소</li>
               <li>바탕화면 <b className="text-fg">우클릭</b> — 배경화면·터미널·정리</li>
               <li>창 <b className="text-fg">모서리를 끌어</b> 크기 조절, 제목표시줄 <b className="text-fg">더블클릭</b>으로 확대</li>

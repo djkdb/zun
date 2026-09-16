@@ -2,13 +2,10 @@
 
 import { useState } from "react";
 import { journey } from "@/data";
-import { ZunCharacter } from "@/components/character";
-import { useOS } from "@/components/os/OSProvider";
 import { Chip } from "./shell";
 
 /** Journey as a scrubbable time axis rather than a stack of cards. */
 export function JourneyApp() {
-  const os = useOS();
   const [i, setI] = useState(Math.max(0, journey.findIndex((j) => j.current)));
   const item = journey[i] ?? journey[0];
 
@@ -45,8 +42,8 @@ export function JourneyApp() {
 
       {/* detail */}
       <div className="min-h-0 flex-1 overflow-auto px-6 py-5 max-[560px]:px-4">
-        <div className="flex items-start gap-4">
-          <div className="min-w-0 flex-1">
+        <div>
+          <div className="min-w-0">
             <p className="font-mono text-[11px] tracking-wider text-fg-dim">
               {item.year}
               {item.current ? " · 현재" : ""}
@@ -54,9 +51,6 @@ export function JourneyApp() {
             <h2 className="mt-1 text-xl font-semibold tracking-tight text-fg">{item.title}</h2>
             <p className="mt-3 text-[13.5px] leading-relaxed text-fg-muted">{item.description}</p>
             <div className="mt-3">{item.keywords.map((k) => <Chip key={k}>{k}</Chip>)}</div>
-          </div>
-          <div className="flex-none max-[560px]:hidden">
-            <ZunCharacter pose={item.pose} size={88} idle={!os.reduce} shadow />
           </div>
         </div>
 

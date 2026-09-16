@@ -18,7 +18,7 @@ export function Notifications() {
             exit={os.reduce ? { opacity: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: os.reduce ? 0.001 : 0.28 }}
             onClick={() => os.dismiss(n.id)}
-            className="pointer-events-auto flex gap-3 rounded-xl border border-line-strong bg-bg-2/92 p-3 text-left shadow-2xl backdrop-blur-2xl"
+            className="pointer-events-auto flex gap-3 rounded-[4px] border border-line-strong bg-bg-2/92 p-3 text-left shadow-2xl backdrop-blur-2xl"
           >
             <span aria-hidden className="flex-none text-xl">{n.icon}</span>
             <span className="min-w-0">

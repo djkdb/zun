@@ -35,58 +35,57 @@ const PlaygroundApp = dynamic(() => import("@/components/apps/PlaygroundApp").th
 
 export const APPS: Record<AppId, AppDef> = {
   finder: {
-    id: "finder", name: "ZUN Finder", deskName: "프로젝트", icon: "🗂️", title: "ZUN — 전체",
-    width: 780, height: 500, component: Finder, pose: "search", dock: true, desktop: true,
-    menu: [{ label: "새 창", shortcut: "⌘N", action: "new" }, { label: "창 닫기", shortcut: "⌘W", action: "close" }],
-  },
+    id: "finder", name: "보관함", deskName: "보관함", icon: "🗂️", title: "보관함 — 전체",
+    width: 780, height: 500, component: Finder, dock: true, desktop: true,
+    },
   about: {
-    id: "about", name: "About ZUN", deskName: "ZUN", icon: "🧑‍💻", title: "About ZUN",
-    width: 620, height: 460, component: About, pose: "wave", dock: true, desktop: true,
+    id: "about", name: "ZUN에 대하여", deskName: "ZUN", icon: "🪪", title: "ZUN에 대하여",
+    width: 620, height: 460, component: About, dock: true, desktop: true,
   },
   projects: {
-    id: "projects", name: "Projects", deskName: "만든 것", icon: "🧰", title: "Projects",
-    width: 720, height: 520, component: ProjectsApp, pose: "build", dock: true, desktop: true,
+    id: "projects", name: "만든 것", deskName: "만든 것", icon: "🧰", title: "만든 것",
+    width: 720, height: 520, component: ProjectsApp, dock: true, desktop: true,
   },
   terminal: {
-    id: "terminal", name: "ZUN Terminal", deskName: "터미널", icon: "▶️", title: "zun — bash — 80×24",
-    width: 640, height: 400, component: Terminal, pose: "code", dock: true, desktop: true,
+    id: "terminal", name: "터미널", deskName: "터미널", icon: "▶️", title: "zun@zun-os — 80×24",
+    width: 640, height: 400, component: Terminal, dock: true, desktop: true,
   },
   safari: {
-    id: "safari", name: "ZUN Web", icon: "🌐", title: "ZUN Web",
-    width: 600, height: 480, component: Safari, pose: "point", dock: true,
+    id: "safari", name: "링크", icon: "🔗", title: "링크",
+    width: 600, height: 480, component: Safari, dock: true,
   },
   photos: {
-    id: "photos", name: "Photos", deskName: "콘텐츠", icon: "📸", title: "Photos — @zun_it_",
-    width: 640, height: 500, component: Photos, pose: "phone", dock: true, desktop: true,
+    id: "photos", name: "콘텐츠", deskName: "콘텐츠", icon: "📸", title: "콘텐츠 — @zun_it_",
+    width: 640, height: 500, component: Photos, dock: true, desktop: true,
   },
   journey: {
-    id: "journey", name: "Journey", deskName: "여정", icon: "📅", title: "Journey",
-    width: 680, height: 500, component: JourneyApp, pose: "book", dock: true, desktop: true,
+    id: "journey", name: "여정", deskName: "여정", icon: "🧭", title: "여정",
+    width: 680, height: 500, component: JourneyApp, dock: true, desktop: true,
   },
   monitor: {
-    id: "monitor", name: "Activity Monitor", icon: "📊", title: "ZUN Activity Monitor",
-    width: 620, height: 460, component: ActivityMonitor, pose: "think", dock: true,
+    id: "monitor", name: "활동 감시기", icon: "📊", title: "활동 감시기",
+    width: 620, height: 460, component: ActivityMonitor, dock: true,
   },
   notes: {
-    id: "notes", name: "Notes", icon: "📝", title: "Notes — BUILD / FAIL / LEARN",
-    width: 560, height: 470, component: NotesApp, pose: "write", dock: true,
+    id: "notes", name: "기록", icon: "📝", title: "기록 — BUILD / FAIL / LEARN",
+    width: 560, height: 470, component: NotesApp, dock: true,
   },
   music: {
-    id: "music", name: "ZUN Radio", icon: "🎵", title: "ZUN Radio",
-    width: 380, height: 430, component: MusicApp, pose: "headphones", dock: true,
+    id: "music", name: "라디오", icon: "🎵", title: "ZUN 라디오",
+    width: 380, height: 430, component: MusicApp, dock: true,
   },
   playground: {
-    id: "playground", name: "ZUN Playground", deskName: "플레이그라운드", icon: "🎮", title: "ZUN Playground — TERMINAL CITY",
+    id: "playground", name: "놀이터", deskName: "놀이터", icon: "🎮", title: "놀이터 — TERMINAL CITY",
     width: 900, height: 560, minWidth: 420, minHeight: 320,
-    component: PlaygroundApp, pose: "experiment", dock: true, desktop: true,
+    component: PlaygroundApp, dock: true, desktop: true,
   },
   settings: {
-    id: "settings", name: "System Settings", deskName: "설정", icon: "⚙️", title: "System Settings",
-    width: 600, height: 470, component: SettingsApp, pose: "ok", dock: true, desktop: true,
+    id: "settings", name: "설정", deskName: "설정", icon: "⚙️", title: "설정",
+    width: 600, height: 470, component: SettingsApp, dock: true, desktop: true,
   },
   trash: {
-    id: "trash", name: "Trash", icon: "🗑️", title: "Trash — 배포되지 않은 것들",
-    width: 560, height: 420, component: TrashApp, pose: "surprise",
+    id: "trash", name: "무덤", icon: "🪦", title: "무덤 — 배포되지 않은 것들",
+    width: 560, height: 420, component: TrashApp,
   },
 };
 

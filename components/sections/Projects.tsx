@@ -2,16 +2,14 @@
 
 import { useCallback, useRef, useState } from "react";
 import { profile, projects } from "@/data";
-import type { PoseName, Project } from "@/data/types";
+import type { Project } from "@/data/types";
 import { cn } from "@/lib/utils";
 import { Section } from "@/components/layout/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/interactions/Reveal";
-import { ZunCharacter } from "@/components/character";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ProjectModal } from "@/components/projects/ProjectModal";
 
-const DEFAULT_POSE: PoseName = "code";
 
 /**
  * 03 / PROJECTS — the lab grid. Hover/focus a card and ZUN reacts with that
@@ -26,7 +24,6 @@ export function Projects() {
   const hoveredProject = hovered ? projects.find((p) => p.id === hovered) ?? null : null;
   const openIndex = openId ? projects.findIndex((p) => p.id === openId) : -1;
   const openProject = openIndex >= 0 ? projects[openIndex] : null;
-  const pose = hoveredProject?.pose ?? openProject?.pose ?? DEFAULT_POSE;
   const drafts = projects.filter((p) => p.draft).length;
 
   const setCardRef = useCallback((id: string) => (el: HTMLButtonElement | null) => {
@@ -48,7 +45,7 @@ export function Projects() {
         <SectionHeader eyebrow="03 / PROJECTS" title="WHAT I BUILD" description={profile.intro} />
 
         <Reveal delay={0.12} className="-mt-4 md:mt-0 md:mb-10">
-          <CharacterMonitor pose={pose} title={hoveredProject?.title ?? openProject?.title ?? null} />
+          <CharacterMonitor title={hoveredProject?.title ?? openProject?.title ?? null} />
         </Reveal>
       </div>
 
@@ -84,20 +81,16 @@ export function Projects() {
 }
 
 /**
- * Small "lab monitor" panel: ZUN reacts to the hovered card.
+ * Small "lab monitor" panel showing which card is under the pointer.
  * Compact horizontal strip on mobile, vertical box on desktop.
  */
-function CharacterMonitor({ pose, title }: { pose: PoseName; title: string | null }) {
+function CharacterMonitor({ title }: { title: string | null }) {
   return (
     <div
       className="relative flex items-center gap-4 bg-bg-1 px-4 py-3 pixel-border md:block md:w-[196px] md:p-0"
       aria-hidden
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-dots mask-fade-y opacity-60" />
-
-      <div className="relative shrink-0 md:flex md:justify-center md:px-4 md:pb-2 md:pt-9">
-        <ZunCharacter pose={pose} sizeClass="w-12 md:w-24" />
-      </div>
 
       <div className="relative min-w-0 flex-1 md:contents">
         <div className="flex items-center justify-between font-mono text-[9px] tracking-[0.22em] text-fg-dim md:absolute md:inset-x-0 md:top-0 md:px-3.5 md:pt-3">

@@ -1,5 +1,4 @@
 import type { ComponentType } from "react";
-import type { PoseName } from "@/data/types";
 
 /** One open window. Position/size are in CSS px relative to the desktop. */
 export interface WindowState {
@@ -52,14 +51,10 @@ export interface AppDef {
   minWidth?: number;
   minHeight?: number;
   component: ComponentType<AppWindowProps>;
-  /** character pose shown by the guide when this app is focused */
-  pose: PoseName;
   /** shown in the Dock, in this order */
   dock?: boolean;
   /** shown on the desktop */
   desktop?: boolean;
-  /** menu items for the app menu in the menu bar */
-  menu?: { label: string; shortcut?: string; action?: string }[];
 }
 
 export interface OSNotification {

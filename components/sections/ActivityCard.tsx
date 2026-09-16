@@ -4,7 +4,6 @@ import Image from "next/image";
 import type { Activity } from "@/data/types";
 import { cn, isTodo } from "@/lib/utils";
 import { TodoTag } from "@/components/ui/Tag";
-import { ZunCharacter } from "@/components/character";
 
 /** Detail block for one activity: image (or pixel placeholder), description, takeaway. */
 export function ActivityDetail({ activity, compact }: { activity: Activity; compact?: boolean }) {
@@ -20,7 +19,7 @@ export function ActivityDetail({ activity, compact }: { activity: Activity; comp
           </div>
         )}
         <div className="absolute bottom-2 right-3">
-          <ZunCharacter pose={activity.pose} size={compact ? 56 : 72} shadow={false} />
+          
         </div>
         <span className="absolute left-3 top-2 font-mono text-[10px] tracking-[0.18em] text-fg-dim">{activity.category}</span>
       </div>

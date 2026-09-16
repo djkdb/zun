@@ -7,7 +7,6 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/interactions/Reveal";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { TodoTag } from "@/components/ui/Tag";
-import { ZunCharacter } from "@/components/character";
 
 /** LET'S BUILD. — closing scene with lots of air. */
 export function Contact() {
@@ -64,9 +63,6 @@ export function Contact() {
           </ul>
         </div>
 
-        <Reveal delay={0.2} className="order-first flex justify-center md:order-none md:justify-end">
-          <ZunCharacter pose="cheers" sizeClass="w-32 md:w-48" followPointer label="ZUN waving goodbye" />
-        </Reveal>
       </div>
 
       <div className="mt-16 flex flex-col gap-4 border-t border-line pt-6 font-mono text-[11px] tracking-[0.16em] text-fg-dim sm:flex-row sm:items-center sm:justify-between">

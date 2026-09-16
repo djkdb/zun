@@ -1,4 +1,3 @@
-import type { PoseName } from "@/data/types";
 import { colX, lineZ, ZONE_LINES } from "./code";
 
 /** where the waiting ZUN stands: past the end of every zone comment */
@@ -13,7 +12,6 @@ export interface Zone {
   /** half-extents of the lane patch the car has to be inside */
   halfW: number;
   halfZ: number;
-  pose: PoseName;
   href: string;
   color: string;
   /** the editor line it lives on, for the HUD */
@@ -26,7 +24,6 @@ const zone = (
   key: keyof typeof ZONE_LINES,
   centreCol: number,
   halfCols: number,
-  pose: PoseName,
   color: string,
 ): Zone => ({
   id,
@@ -35,7 +32,6 @@ const zone = (
   z: lineZ(ZONE_LINES[key]),
   halfW: halfCols * 1.02,
   halfZ: 1.7,
-  pose,
   href: `/#${id}`,
   color,
   line: ZONE_LINES[key] + 1,
@@ -43,10 +39,10 @@ const zone = (
 
 /** Four highlighted lines in the editor floor. Drive onto one to run it. */
 export const ZONES: Zone[] = [
-  zone("about", "ABOUT", "about", 18, 19, "think", "#60a5fa"),
-  zone("projects", "PROJECTS", "projects", 21, 22, "build", "#fbbf24"),
-  zone("content", "CONTENT", "content", 23, 24, "phone", "#f472b6"),
-  zone("contact", "CONTACT", "contact", 22, 23, "cheers", "#34d399"),
+  zone("about", "ABOUT", "about", 18, 19, "#60a5fa"),
+  zone("projects", "PROJECTS", "projects", 21, 22, "#fbbf24"),
+  zone("content", "CONTENT", "content", 23, 24, "#f472b6"),
+  zone("contact", "CONTACT", "contact", 22, 23, "#34d399"),
 ];
 
 export function zoneAt(x: number, z: number): Zone | null {

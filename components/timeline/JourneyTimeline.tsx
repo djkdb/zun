@@ -5,7 +5,6 @@ import { usePrefersReducedMotion } from "@/lib/hooks";
 import { useCallback, useRef, useState } from "react";
 import type { JourneyItem } from "@/data/types";
 import { cn } from "@/lib/utils";
-import { ZunCharacter } from "@/components/character";
 import { Reveal } from "@/components/interactions/Reveal";
 import { Tag, TodoTag } from "@/components/ui/Tag";
 
@@ -74,7 +73,7 @@ export function JourneyTimeline({ items }: JourneyTimelineProps) {
             className="pointer-events-none absolute top-[6px] z-10 hidden -translate-x-1/2 -translate-y-full md:block"
             style={{ left: walkerLeft, opacity: walkerOpacity }}
           >
-            <ZunCharacter pose="walk" size={26} shadow={false} idle={false} className="-mb-[3px]" />
+            
           </motion.div>
         )}
 
@@ -117,7 +116,7 @@ export function JourneyTimeline({ items }: JourneyTimelineProps) {
                   <div className="flex items-start gap-4 md:block">
                     {/* per-item sprite (mobile only) */}
                     <div className="shrink-0 md:hidden">
-                      <ZunCharacter pose={item.pose} size={56} shadow={false} idle={isActive} />
+                      
                     </div>
 
                     <div className="min-w-0 flex-1">
@@ -187,7 +186,7 @@ export function JourneyTimeline({ items }: JourneyTimelineProps) {
                 transition={{ duration: 0.18, ease: "easeOut" }}
                 className="pb-5"
               >
-                <ZunCharacter pose={active.pose} sizeClass="w-28 lg:w-32" label={`ZUN — ${active.title}`} />
+                
               </motion.div>
             </AnimatePresence>
           </div>

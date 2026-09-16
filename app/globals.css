@@ -81,6 +81,12 @@ body {
 :focus-visible {
   outline: 2px solid var(--accent-strong);
   outline-offset: 3px;
+}
+
+/* The shell input shows a blinking block caret instead — a ring around the
+   whole line looks like a form field, not a terminal. */
+[data-terminal-input]:focus-visible {
+  outline: none;
   border-radius: 2px;
 }
 
@@ -237,3 +243,14 @@ html.lenis, html.lenis body { height: auto; }
 }
 .anim-ticker { animation: ticker 28s linear infinite; }
 .anim-ticker:hover { animation-play-state: paused; }
+
+/* terminal caret — the visible focus indicator for the shell input */
+@keyframes caret-blink {
+  50% { opacity: 0; }
+}
+.animate-caret {
+  animation: caret-blink 1.05s steps(1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-caret { animation: none; }
+}

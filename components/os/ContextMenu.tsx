@@ -31,7 +31,7 @@ export function ContextMenu() {
   if (!pos) return null;
 
   const items: ({ label: string; run: () => void } | "sep")[] = [
-    { label: "새 Finder 창", run: () => os.openApp("finder") },
+    { label: "새 보관함 창", run: () => os.openApp("finder") },
     { label: "터미널 열기", run: () => os.openApp("terminal") },
     "sep",
     { label: "배경화면 바꾸기", run: () => {
@@ -51,7 +51,7 @@ export function ContextMenu() {
     <div
       role="menu"
       style={{ left: Math.min(pos.x, window.innerWidth - 220), top: Math.min(pos.y, window.innerHeight - 260) }}
-      className="absolute z-[9650] min-w-[210px] rounded-xl border border-line-strong bg-bg-2/95 p-1.5 shadow-2xl backdrop-blur-2xl"
+      className="absolute z-[9650] min-w-[210px] rounded-[4px] border border-line-strong bg-bg-2/95 p-1.5 shadow-2xl backdrop-blur-2xl"
       onPointerDown={(e) => e.stopPropagation()}
     >
       {items.map((it, i) =>

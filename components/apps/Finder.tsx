@@ -92,9 +92,9 @@ export function Finder({ win }: AppWindowProps) {
             />
           ))}
           <SideGroup label="위치" />
-          <SideItem icon="🧑‍💻" label="About ZUN" onClick={() => os.openApp("about")} />
-          <SideItem icon="📝" label="Notes" onClick={() => os.openApp("notes")} />
-          <SideItem icon="🗑️" label="Trash" onClick={() => os.openApp("trash")} />
+          <SideItem icon="🪪" label="ZUN에 대하여" onClick={() => os.openApp("about")} />
+          <SideItem icon="📝" label="기록" onClick={() => os.openApp("notes")} />
+          <SideItem icon="🪦" label="무덤" onClick={() => os.openApp("trash")} />
         </>
       }
     >

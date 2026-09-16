@@ -2,13 +2,10 @@
 
 import { useState } from "react";
 import { projects } from "@/data";
-import { ZunCharacter } from "@/components/character";
-import { useOS } from "@/components/os/OSProvider";
 import type { AppWindowProps } from "@/components/os/types";
 import { AppSplit, Chip, Field, SideGroup, SideItem, Todo } from "./shell";
 
 export function ProjectsApp({ win }: AppWindowProps) {
-  const os = useOS();
   const [id, setId] = useState(win?.arg ?? projects[0]?.id);
   const p = projects.find((x) => x.id === id) ?? projects[0];
 
@@ -45,9 +42,6 @@ export function ProjectsApp({ win }: AppWindowProps) {
               {p.role} · {p.year ?? "—"}
             </p>
             <div className="mt-2">{p.stack.map((s) => <Chip key={s}>{s}</Chip>)}</div>
-          </div>
-          <div className="flex-none max-[560px]:hidden">
-            <ZunCharacter pose={p.pose} size={84} idle={!os.reduce} shadow />
           </div>
         </header>
 

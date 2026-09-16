@@ -3,13 +3,11 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { activities } from "@/data";
-import type { Activity } from "@/data/types";
 import { cn, isTodo } from "@/lib/utils";
 import { Section } from "@/components/layout/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/interactions/Reveal";
 import { Tag, TodoTag } from "@/components/ui/Tag";
-import { ZunCharacter } from "@/components/character";
 import { ActivityDetail } from "./ActivityCard";
 
 /**
@@ -104,8 +102,4 @@ export function Activities() {
       </div>
     </Section>
   );
-}
-
-export function ActivityPose({ activity, size }: { activity: Activity; size: number }) {
-  return <ZunCharacter pose={activity.pose} size={size} shadow={false} />;
 }

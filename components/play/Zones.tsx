@@ -3,13 +3,12 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { car } from "./store";
-import { SPRITE_COL, ZONES, zoneAt } from "./zones";
-import { ZunSprite } from "./Sprite";
-import { colX } from "./code";
+import { zoneAt } from "./zones";
 
 /**
  * Detects which highlighted line the car is parked on and reports it upward.
- * Also parks a ZUN sprite at the end of each zone line, waiting to be run.
+ * The lines themselves are painted into the floor texture, so this renders
+ * nothing — it is a frame loop, not geometry.
  */
 export function Zones({ onEnter }: { onEnter: (id: string | null) => void }) {
   const current = useRef<string | null>(null);
@@ -22,11 +21,7 @@ export function Zones({ onEnter }: { onEnter: (id: string | null) => void }) {
     }
   });
 
-  return (
-    <group>
-      {ZONES.map((z) => (
-        <ZunSprite key={z.id} pose={z.pose} position={[colX(SPRITE_COL), 0, z.z]} height={3.2} />
-      ))}
-    </group>
-  );
+  // zone lines are painted into the floor texture; this component only watches
+  // which one the car is standing on.
+  return null;
 }

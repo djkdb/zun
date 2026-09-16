@@ -33,7 +33,7 @@ function SpotlightPanel() {
 
   const index = useMemo<Hit[]>(() => {
     const out: Hit[] = appList.map((a) => ({
-      icon: a.icon, title: a.name, kind: "응용 프로그램", run: () => os.openApp(a.id),
+      icon: a.icon, title: a.name, kind: "앱", run: () => os.openApp(a.id),
     }));
     for (const p of projects) {
       out.push({
@@ -80,7 +80,7 @@ function SpotlightPanel() {
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: os.reduce ? 1 : 0.97 }}
             transition={{ duration: os.reduce ? 0.001 : 0.16 }}
-            className="w-[min(560px,92%)] overflow-hidden rounded-2xl border border-line-strong bg-bg-2/92 shadow-2xl backdrop-blur-2xl"
+            className="w-[min(560px,92%)] overflow-hidden rounded-[4px] border border-line-strong bg-bg-2/92 shadow-2xl backdrop-blur-2xl"
           >
             <div className="flex items-center gap-3 px-5 py-3.5">
               <span aria-hidden className="text-xl text-fg-dim">🔍</span>
@@ -95,8 +95,8 @@ function SpotlightPanel() {
                   else if (e.key === "Enter") { e.preventDefault(); choose(hits[sel]); }
                   else if (e.key === "Escape") os.setSpotlight(false);
                 }}
-                placeholder="ZUN 검색 — 프로젝트, 앱, 콘텐츠"
-                aria-label="ZUN 검색"
+                placeholder="ZUN OS 안에서 찾기"
+                aria-label="ZUN OS 안에서 찾기"
                 autoComplete="off"
                 spellCheck={false}
                 className="flex-1 bg-transparent text-lg text-fg outline-none placeholder:text-fg-dim"

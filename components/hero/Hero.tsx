@@ -2,10 +2,9 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { usePrefersReducedMotion } from "@/lib/hooks";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { profile } from "@/data/profile";
 import { scrollToId } from "@/lib/scroll";
-import { ZunCharacter } from "@/components/character";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { TerminalIntro } from "./TerminalIntro";
 
@@ -19,7 +18,6 @@ export function Hero() {
   // effect-based so SSR and the first client render agree (no hydration mismatch)
   const reduce = usePrefersReducedMotion();
   const ref = useRef<HTMLElement>(null);
-  const [typed, setTyped] = useState(false);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const charY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 80]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 40]);
@@ -65,7 +63,6 @@ export function Hero() {
               lines={[profile.brand, ...profile.roles.slice(0, 3)]}
               startDelay={reduce ? 0 : 280}
               reduce={reduce}
-              onDone={() => setTyped(true)}
             />
           </motion.div>
 
@@ -102,12 +99,7 @@ export function Hero() {
               className="absolute inset-x-[-12%] bottom-0 top-[20%] -z-10 bg-bg-1/60 pixel-border"
             />
             <div className="px-8 pb-4 pt-6 sm:px-12 md:pb-6 md:pt-8">
-              <ZunCharacter
-                pose="idle"
-                sizeClass="w-24 sm:w-32 md:w-44"
-                followPointer
-                label={typed ? "ZUN pixel character, idle and looking around" : "ZUN pixel character"}
-              />
+              
             </div>
             <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-bg px-2 font-mono text-[10px] tracking-[0.2em] text-fg-dim">
               ZUN · v2026

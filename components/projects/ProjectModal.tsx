@@ -8,7 +8,6 @@ import { getLenis } from "@/lib/scroll";
 import { PixelReveal } from "@/components/interactions/PixelTransition";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { Tag, TodoTag } from "@/components/ui/Tag";
-import { ZunCharacter } from "@/components/character";
 import { isTodo } from "./ProjectCard";
 
 interface ProjectModalProps {
@@ -167,7 +166,7 @@ export function ProjectModal({ project, index, total, onClose }: ProjectModalPro
                     </p>
                   </div>
                   <div className="hidden shrink-0 sm:block" aria-hidden>
-                    <ZunCharacter pose={project.pose} size={72} shadow={false} />
+                    
                   </div>
                 </div>
 

@@ -14,7 +14,7 @@ const NEOFETCH = `      ████████████        ZUN@zun-os
   ██   ██      ██   ██    OS        ZUN OS 1.0
   ██                ██    Host      ${profile.school}
   ██   ██      ██   ██    Kernel    Next.js · React 19
-   ██    ██████    ██     Shell     zsh (fake, but it works)
+   ██    ██████    ██     Shell     zsh (진짜로 동작합니다)
       ████████████        Focus     ${profile.formula}
                           Handle    ${profile.handle}`;
 
@@ -30,12 +30,20 @@ export function Terminal() {
   const [hi, setHi] = useState(0);
   const boxRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const focusedHere = os.focusedApp === "terminal";
 
   const write = useCallback((html: string) => setLines((l) => [...l, { html }]), []);
 
   useEffect(() => {
     boxRef.current?.scrollTo({ top: boxRef.current.scrollHeight });
   }, [lines]);
+
+  /* a terminal that does not take the caret is a picture of a terminal */
+  useEffect(() => {
+    if (os.focusedApp !== "terminal") return;
+    const t = window.setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 40);
+    return () => window.clearTimeout(t);
+  }, [os.focusedApp]);
 
   const run = useCallback(
     (raw: string) => {
@@ -58,7 +66,7 @@ export function Terminal() {
               ["content", "콘텐츠"],
               ["loop", "BUILD / FAIL / LEARN"],
               ["contact", "연락처"],
-              ["open <앱>", "앱 실행"],
+              ["open <앱>", "앱 실행 (finder/notes/photos…)"],
               ["apps", "앱 목록"],
               ["play", "TERMINAL CITY 실행"],
               ["neofetch", "시스템 정보"],
@@ -151,14 +159,24 @@ export function Terminal() {
       {lines.map((l, i) => (
         <pre key={i} className="whitespace-pre-wrap break-words" dangerouslySetInnerHTML={{ __html: l.html }} />
       ))}
-      <div className="flex items-baseline gap-1">
+      <div className="relative flex items-baseline gap-1">
         <span className="flex-none">
-          <span className="text-ok">zun@portfolio</span>
+          <span className="text-ok">zun@zun-os</span>
           <span className="text-fg-dim">:~$</span>
+        </span>
+        {/* the blinking block is this input's focus indicator — a terminal
+            shows a caret, not a rounded outline */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute left-0 top-0 -z-10 select-none whitespace-pre font-mono text-transparent"
+        >
+          {`zun@zun-os:~$ ${buf}`}
+          <span className={`inline-block h-[15px] w-[7px] translate-y-[3px] bg-[#c9d3ea] ${focusedHere ? "animate-caret" : "opacity-0"}`} />
         </span>
         <input
           ref={inputRef}
           id={inputId}
+          data-terminal-input
           value={buf}
           autoComplete="off"
           spellCheck={false}
@@ -167,7 +185,7 @@ export function Terminal() {
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               const line = buf;
-              setLines((l) => [...l, { html: `<span class="text-ok">zun@portfolio</span><span class="text-fg-dim">:~$</span> ${line.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c] as string))}` }]);
+              setLines((l) => [...l, { html: `<span class="text-ok">zun@zun-os</span><span class="text-fg-dim">:~$</span> ${line.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c] as string))}` }]);
               if (line.trim()) setHist((h) => [...h, line]);
               setHi(hist.length + 1);
               setBuf("");
@@ -184,7 +202,7 @@ export function Terminal() {
               setBuf(hist[n] ?? "");
             }
           }}
-          className="min-w-0 flex-1 bg-transparent font-mono text-[12.5px] text-[#c9d3ea] outline-none"
+          className="min-w-0 flex-1 bg-transparent font-mono text-[12.5px] text-[#c9d3ea] caret-transparent outline-none focus:outline-none focus-visible:outline-none"
         />
       </div>
     </div>

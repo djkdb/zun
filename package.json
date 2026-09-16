@@ -7,10 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "character:split": "node scripts/split-character-sheet.mjs",
     "deploy": "next build && npx wrangler pages deploy out --project-name=zun",
     "preview:static": "npx serve out",
-    "prebuild": "node scripts/split-character-sheet.mjs --if-present && node scripts/optimize-wallpaper.mjs",
+    "prebuild": "node scripts/optimize-wallpaper.mjs",
     "wallpaper:optimize": "node scripts/optimize-wallpaper.mjs"
   },
   "dependencies": {

@@ -14,7 +14,6 @@ export const activities: Activity[] = [
     category: "UNIVERSITY",
     description: "TODO: 학과/동아리/학회 활동을 적어주세요.",
     takeaway: "TODO: 이 활동에서 얻은 한 가지",
-    pose: "books",
     draft: true,
   },
   {
@@ -23,7 +22,6 @@ export const activities: Activity[] = [
     category: "STARTUP",
     description: "TODO: 창업 관련 활동 (프로그램, 팀, 아이디어 검증 등)",
     takeaway: "TODO: 이 활동에서 얻은 한 가지",
-    pose: "present",
     draft: true,
   },
   {
@@ -32,7 +30,6 @@ export const activities: Activity[] = [
     category: "GLOBAL",
     description: "TODO: 탐방한 기업/도시/기간",
     takeaway: "TODO: 이 활동에서 얻은 한 가지",
-    pose: "backpack",
     draft: true,
   },
   {
@@ -41,7 +38,6 @@ export const activities: Activity[] = [
     category: "AI",
     description: "TODO: AI 관련 스터디/해커톤/커뮤니티",
     takeaway: "TODO: 이 활동에서 얻은 한 가지",
-    pose: "idea",
     draft: true,
   },
   {
@@ -50,7 +46,6 @@ export const activities: Activity[] = [
     category: "CONTENT",
     description: "Instagram @zun_it_ 에서 AI · 개발 · 바이브 코딩 실험을 공유합니다.",
     takeaway: "만든 것을 공개하면, 다음에 만들 것이 더 선명해집니다.",
-    pose: "phone",
   },
   {
     id: "supporters",
@@ -58,7 +53,6 @@ export const activities: Activity[] = [
     category: "COMMUNITY",
     description: "TODO: 서포터즈, 커뮤니티 활동",
     takeaway: "TODO: 이 활동에서 얻은 한 가지",
-    pose: "celebrate",
     draft: true,
   },
   {
@@ -67,7 +61,6 @@ export const activities: Activity[] = [
     category: "PLAY",
     description: "TODO: 축구/동아리 활동",
     takeaway: "TODO: 이 활동에서 얻은 한 가지",
-    pose: "run",
     draft: true,
   },
 ];

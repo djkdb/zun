@@ -12,7 +12,6 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/interactions/Reveal";
 import { PixelDissolve } from "@/components/interactions/PixelTransition";
 import { Tag, TodoTag } from "@/components/ui/Tag";
-import { ZunCharacter } from "@/components/character";
 
 /* ─────────────────────────────────────────────
    Keyword field — six themes in a loose orbit around a hub.
@@ -214,7 +213,7 @@ export function About() {
 
               {/* character — thinking at the bottom-left of the field */}
               <div className="relative flex items-end gap-3 px-4 pb-4 pt-1 md:absolute md:bottom-3 md:left-4 md:p-0">
-                <ZunCharacter pose="think" sizeClass="w-14 md:w-22" />
+                
                 <p className="mb-1 font-mono text-[10px] tracking-[0.16em] text-fg-dim md:hidden">TAP A KEYWORD</p>
               </div>
 

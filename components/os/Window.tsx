@@ -108,7 +108,7 @@ export function Window({ win }: { win: WindowState }) {
       transition={spring}
       style={{ left: win.x, top: win.y, width: win.width, height: win.height, zIndex: win.zIndex }}
       className={`absolute flex flex-col overflow-hidden border shadow-[0_28px_70px_-18px_rgba(0,0,0,.75)] backdrop-blur-2xl ${
-        narrow ? "rounded-none border-x-0" : "rounded-xl"
+        narrow ? "rounded-none border-x-0" : "rounded-[3px]"
       } ${isFocused ? "border-line-strong bg-bg-2/85" : "border-line bg-bg-1/80"}`}
       onPointerDown={() => focusWindow(win.id)}
     >
@@ -124,15 +124,15 @@ export function Window({ win }: { win: WindowState }) {
           isFocused ? "bg-bg-3/70" : "bg-bg-2/60"
         } ${narrow || win.isMaximized ? "" : "cursor-grab active:cursor-grabbing"}`}
       >
-        <div className="flex flex-none items-center gap-2">
-          <TrafficLight kind="close" active={isFocused} onClick={() => closeWindow(win.id)} />
-          <TrafficLight kind="min" active={isFocused} onClick={() => minimizeWindow(win.id)} />
-          <TrafficLight kind="zoom" active={isFocused} onClick={() => zoomWindow(win.id)} disabled={narrow} />
+        <div className="flex flex-none items-center gap-1.5">
+          <WindowControl kind="close" active={isFocused} onClick={() => closeWindow(win.id)} />
+          <WindowControl kind="min" active={isFocused} onClick={() => minimizeWindow(win.id)} />
+          <WindowControl kind="zoom" active={isFocused} onClick={() => zoomWindow(win.id)} disabled={narrow} />
         </div>
-        <p className="pointer-events-none flex-1 truncate text-center font-mono text-[11.5px] tracking-tight text-fg-muted">
+        <p className="pointer-events-none flex-1 truncate text-center font-mono text-[10.5px] uppercase tracking-[0.18em] text-fg-dim">
           {win.title}
         </p>
-        <div className="w-14 flex-none" aria-hidden />
+        <div className="w-[58px] flex-none" aria-hidden />
       </div>
 
       {/* content */}
@@ -157,29 +157,35 @@ export function Window({ win }: { win: WindowState }) {
   );
 }
 
-const LIGHT = {
-  close: { color: "bg-[#ff5f57]", glyph: "×", label: "닫기" },
-  min: { color: "bg-[#febc2e]", glyph: "−", label: "최소화" },
-  zoom: { color: "bg-[#28c840]", glyph: "+", label: "확대/축소" },
+/**
+ * ZUN window controls: square, pixel-cut, mono glyphs. Deliberately not the
+ * three coloured circles — this is ZUN OS, not a copy of someone else's.
+ */
+const CONTROL = {
+  close: { glyph: "\u00d7", label: "닫기", hover: "hover:bg-[#e05a52] hover:text-bg" },
+  min: { glyph: "\u2013", label: "최소화", hover: "hover:bg-fg-muted hover:text-bg" },
+  zoom: { glyph: "\u2b1a", label: "확대/축소", hover: "hover:bg-accent hover:text-bg" },
 } as const;
 
-function TrafficLight({
+function WindowControl({
   kind, active, onClick, disabled,
 }: {
-  kind: keyof typeof LIGHT; active: boolean; onClick: () => void; disabled?: boolean;
+  kind: keyof typeof CONTROL; active: boolean; onClick: () => void; disabled?: boolean;
 }) {
-  const l = LIGHT[kind];
+  const c = CONTROL[kind];
   return (
     <button
       type="button"
-      aria-label={l.label}
+      aria-label={c.label}
       disabled={disabled}
       onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={`grid h-3 w-3 place-items-center rounded-full text-[8px] font-bold leading-none text-black/55 transition-colors disabled:opacity-40 ${
-        active ? l.color : "bg-[#5b6478]"
+      className={`grid h-[15px] w-[15px] place-items-center rounded-[3px] border font-mono text-[10px] leading-none transition-colors disabled:opacity-30 ${
+        active
+          ? `border-line-strong bg-bg-3/70 text-fg-muted ${c.hover}`
+          : "border-line bg-bg-2/60 text-fg-dim"
       }`}
     >
-      <span className="opacity-0 transition-opacity group-hover:opacity-100">{l.glyph}</span>
+      <span aria-hidden>{c.glyph}</span>
     </button>
   );
 }

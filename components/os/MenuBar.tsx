@@ -45,12 +45,12 @@ export function MenuBar() {
   const menus: Menu[] = [
     {
       id: "zun",
-      label: "ZUN",
+      label: "ZUN OS",
       items: [
-        { label: "About ZUN", run: () => os.openApp("about") },
+        { label: "ZUN에 대하여", run: () => os.openApp("about") },
         "sep",
-        { label: "System Settings…", run: () => os.openApp("settings") },
-        { label: "Spotlight 검색", shortcut: "⌘K", run: () => os.setSpotlight(true) },
+        { label: "설정…", run: () => os.openApp("settings") },
+        { label: "찾기", shortcut: "⌘K", run: () => os.setSpotlight(true) },
         "sep",
         { label: "일반 보기 (스크롤 사이트)", run: () => router.push("/classic") },
         "sep",
@@ -59,29 +59,18 @@ export function MenuBar() {
       ],
     },
     {
-      id: "file",
-      label: "File",
+      id: "open",
+      label: "열기",
       items: [
-        { label: "새 Finder 창", shortcut: "⌘N", run: () => os.openApp("finder") },
+        { label: "새 보관함 창", shortcut: "⌘N", run: () => os.openApp("finder") },
         { label: "터미널 열기", run: () => os.openApp("terminal") },
         "sep",
         { label: "창 닫기", shortcut: "⌘W", disabled: !focused, run: () => focused && os.closeWindow(focused) },
       ],
     },
     {
-      id: "edit",
-      label: "Edit",
-      items: [
-        { label: "실행 취소", shortcut: "⌘Z", disabled: true },
-        { label: "복사", shortcut: "⌘C", disabled: true },
-        { label: "붙여넣기", shortcut: "⌘V", disabled: true },
-        "sep",
-        { label: "검색…", shortcut: "⌘K", run: () => os.setSpotlight(true) },
-      ],
-    },
-    {
-      id: "view",
-      label: "View",
+      id: "look",
+      label: "보기",
       items: [
         { label: os.settings.appearance === "dark" ? "밝은 모드로" : "어두운 모드로",
           run: () => os.setAppearance(os.settings.appearance === "dark" ? "light" : "dark") },
@@ -92,8 +81,8 @@ export function MenuBar() {
       ],
     },
     {
-      id: "window",
-      label: "Window",
+      id: "win",
+      label: "창",
       items: [
         { label: "최소화", shortcut: "⌘M", disabled: !focused, run: () => focused && os.minimizeWindow(focused) },
         { label: "확대/축소", disabled: !focused || os.narrow, run: () => focused && os.zoomWindow(focused) },
@@ -103,10 +92,10 @@ export function MenuBar() {
     },
     {
       id: "help",
-      label: "Help",
+      label: "도움말",
       items: [
-        { label: "ZUN OS 사용법", run: () => os.openApp("notes", { arg: "help", title: "Notes — ZUN OS 사용법" }) },
-        { label: "GitHub 열기", run: () => os.openApp("safari") },
+        { label: "ZUN OS 사용법", run: () => os.openApp("notes", { arg: "help", title: "기록 — ZUN OS 사용법" }) },
+        { label: "링크 열기", run: () => os.openApp("safari") },
       ],
     },
   ];
@@ -116,8 +105,11 @@ export function MenuBar() {
       ref={barRef}
       className="absolute inset-x-0 top-0 z-[9000] flex h-[30px] items-center gap-px border-b border-white/5 bg-bg/45 px-2 text-[12.5px] text-fg backdrop-blur-xl backdrop-saturate-150"
     >
-      <span className="mr-1 grid h-[15px] w-[15px] flex-none place-items-center rounded bg-fg font-pixel text-[9px] leading-none text-bg">
-        Z
+      <span
+        aria-hidden
+        className="mr-2 flex-none rounded-[3px] bg-accent px-1.5 py-[3px] font-pixel text-[9px] leading-none tracking-[0.12em] text-bg"
+      >
+        ZUN
       </span>
       {menus.map((m, i) => (
         <div key={m.id} className="relative">
@@ -131,12 +123,12 @@ export function MenuBar() {
               open === m.id ? "bg-select text-white" : "hover:bg-white/10"
             } ${i > 0 ? "max-[760px]:hidden" : ""}`}
           >
-            {i === 0 ? (app?.name ?? "Finder") : m.label}
+            {i === 0 ? (app?.name ?? "보관함") : m.label}
           </button>
           {open === m.id && (
             <div
               role="menu"
-              className="absolute left-0 top-full mt-1 min-w-[230px] rounded-xl border border-line-strong bg-bg-2/95 p-1.5 shadow-2xl backdrop-blur-2xl"
+              className="absolute left-0 top-full mt-1 min-w-[230px] rounded-[4px] border border-line-strong bg-bg-2/95 p-1.5 shadow-2xl backdrop-blur-2xl"
             >
               {m.items.map((it, n) =>
                 it === "sep" ? (
@@ -163,7 +155,7 @@ export function MenuBar() {
       <div className="ml-auto flex items-center gap-0.5">
         <button
           type="button"
-          aria-label="Spotlight 검색"
+          aria-label="찾기"
           onClick={() => os.setSpotlight(true)}
           className="rounded px-2 py-0.5 hover:bg-white/10"
         >

@@ -6,51 +6,6 @@
  * are rendered as visible "TODO" states so nothing fake ships silently.
  */
 
-/**
- * Pose names map to cells of the official 32-pose sheet (see data/character.ts).
- * The SVG fallback only draws a subset; others fall back to the nearest one.
- */
-export type PoseName =
-  // core (drawn by the SVG fallback too)
-  | "idle"
-  | "think"
-  | "walk"
-  | "build"
-  | "phone"
-  | "book"
-  | "point"
-  | "telescope"
-  | "wave"
-  | "surprise"
-  | "experiment"
-  // sheet-only
-  | "laptop-desk"
-  | "mug"
-  | "laptop-lap"
-  | "idea"
-  | "headphones"
-  | "beanbag"
-  | "ok"
-  | "coffee"
-  | "celebrate"
-  | "tired"
-  | "run"
-  | "desk-plant"
-  | "sunglasses"
-  | "cat"
-  | "backpack"
-  | "code"
-  | "tea"
-  | "night"
-  | "books"
-  | "sleep"
-  | "write"
-  | "present"
-  | "search"
-  | "tablet"
-  | "cheers"
-  | "laptop-floor";
-
 export type TechTag = string;
 
 export interface Link {
@@ -78,8 +33,6 @@ export interface Project {
   themes: Theme[];
   /** marks entries whose details are not yet confirmed by ZUN */
   draft?: boolean;
-  /** character pose shown when the card is hovered */
-  pose: PoseName;
   accent?: string;
 }
 
@@ -97,7 +50,6 @@ export interface JourneyItem {
   title: string;
   description: string;
   keywords: string[];
-  pose: PoseName;
   current?: boolean;
 }
 
@@ -109,7 +61,6 @@ export interface Activity {
   takeaway: string;
   image?: string;
   period?: string;
-  pose: PoseName;
   draft?: boolean;
 }
 
@@ -137,5 +88,4 @@ export interface LoopStep {
   key: "build" | "fail" | "learn" | "again";
   title: string;
   body: string;
-  pose: PoseName;
 }

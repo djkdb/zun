@@ -2,7 +2,6 @@ import { future } from "@/data";
 import { Section } from "@/components/layout/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/interactions/Reveal";
-import { ZunCharacter } from "@/components/character";
 
 /** WHERE I'M GOING — direction, not a job pitch. */
 export function Future() {
@@ -49,7 +48,7 @@ export function Future() {
 
         <Reveal delay={0.2} className="flex justify-center md:justify-end">
           <div className="relative">
-            <ZunCharacter pose="search" sizeClass="w-40 md:w-56" label="ZUN looking through a telescope toward what comes next" />
+            
             <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] tracking-[0.24em] text-fg-dim">
               LOOKING AHEAD
             </span>

@@ -26,7 +26,7 @@ export function TrashApp() {
 
   return (
     <div className="h-full overflow-auto px-6 py-5 max-[560px]:px-4">
-      <p className="font-mono text-[10.5px] tracking-wider text-fg-dim">TRASH — 배포되지 않은 것들</p>
+      <p className="font-mono text-[10.5px] tracking-wider text-fg-dim">무덤 — 배포되지 않은 것들</p>
 
       <div className="mt-3">
         {DISCARDED.map((d) => (

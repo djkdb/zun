@@ -7,7 +7,7 @@ export function SettingsApp() {
   const os = useOS();
   return (
     <div className="h-full overflow-auto px-6 py-5 max-[560px]:px-4">
-      <h2 className="text-base font-semibold tracking-tight text-fg">System Settings</h2>
+      <h2 className="text-base font-semibold tracking-tight text-fg">설정</h2>
 
       <Row title="외관" note="시스템 설정을 따라 시작하고, 여기서 바꾼 값은 이 브라우저에 기억됩니다.">
         <Switch
@@ -59,7 +59,7 @@ export function SettingsApp() {
         </a>
       </Row>
 
-      <Row title="About ZUN OS" note="ZUN OS 1.0 · Next.js 16 · React 19 · Three.js — 정적 배포, 서버 없음.">
+      <Row title="ZUN OS에 대하여" note="ZUN OS 1.0 · Next.js 16 · React 19 · Three.js — 정적 배포, 서버 없음.">
         <button
           type="button"
           onClick={() => os.openApp("about")}
