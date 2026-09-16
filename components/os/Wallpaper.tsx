@@ -10,16 +10,23 @@ import { useOS } from "./OSProvider";
  * flickers between renders.
  */
 export const WALLPAPERS = [
-  { id: 1, name: "서울의 밤", swatch: "linear-gradient(180deg,#0a1028,#22265a 55%,#0d1234)" },
-  { id: 2, name: "새벽", swatch: "linear-gradient(165deg,#3b1c4a,#8f3b5e 45%,#e2794a)" },
-  { id: 3, name: "심해", swatch: "radial-gradient(120% 100% at 50% 110%,#0b7a8c,#052033 60%,#020a14)" },
-  { id: 4, name: "단색", swatch: "linear-gradient(160deg,#101a36,#070b18)" },
-] as const;
+  { id: 5, name: "ZUN의 방", kind: "image" as const, src: "/wallpaper.webp",
+    swatch: "linear-gradient(160deg,#2b3560,#141c38 55%,#0a0f22)" },
+  { id: 1, name: "서울의 밤", kind: "pixel" as const,
+    swatch: "linear-gradient(180deg,#0a1028,#22265a 55%,#0d1234)" },
+  { id: 2, name: "새벽", kind: "gradient" as const,
+    swatch: "linear-gradient(165deg,#3b1c4a,#8f3b5e 45%,#e2794a)" },
+  { id: 3, name: "심해", kind: "gradient" as const,
+    swatch: "radial-gradient(120% 100% at 50% 110%,#0b7a8c,#052033 60%,#020a14)" },
+  { id: 4, name: "단색", kind: "gradient" as const,
+    swatch: "linear-gradient(160deg,#101a36,#070b18)" },
+];
 
 export function Wallpaper() {
   const { settings } = useOS();
   const cv = useRef<HTMLCanvasElement>(null);
-  const pixel = settings.wallpaper === 1;
+  const chosen = WALLPAPERS.find((w) => w.id === settings.wallpaper) ?? WALLPAPERS[0];
+  const pixel = chosen.kind === "pixel";
 
   useEffect(() => {
     if (!pixel) return;
@@ -29,10 +36,24 @@ export function Wallpaper() {
     draw(x, c.width, c.height, settings.appearance === "dark");
   }, [pixel, settings.appearance]);
 
-  if (!pixel) {
-    const w = WALLPAPERS.find((w) => w.id === settings.wallpaper) ?? WALLPAPERS[3];
-    return <div aria-hidden className="absolute inset-0 z-0" style={{ background: w.swatch }} />;
+  if (chosen.kind === "image") {
+    return (
+      /* eslint-disable-next-line @next/next/no-img-element -- static export runs
+         with images.unoptimized, and this file is pre-compressed by prebuild */
+      <img
+        src={chosen.src}
+        alt=""
+        aria-hidden
+        fetchPriority="high"
+        className="absolute inset-0 z-0 h-full w-full object-cover"
+      />
+    );
   }
+
+  if (!pixel) {
+    return <div aria-hidden className="absolute inset-0 z-0" style={{ background: chosen.swatch }} />;
+  }
+
   return (
     <canvas
       ref={cv}

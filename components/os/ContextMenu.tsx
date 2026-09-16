@@ -35,9 +35,10 @@ export function ContextMenu() {
     { label: "터미널 열기", run: () => os.openApp("terminal") },
     "sep",
     { label: "배경화면 바꾸기", run: () => {
-        const next = (os.settings.wallpaper % WALLPAPERS.length) + 1;
-        os.setWallpaper(next);
-        os.notify("🖼️", "배경화면 변경", WALLPAPERS.find((w) => w.id === next)?.name ?? "");
+        const at = WALLPAPERS.findIndex((w) => w.id === os.settings.wallpaper);
+        const next = WALLPAPERS[(at + 1) % WALLPAPERS.length];
+        os.setWallpaper(next.id);
+        os.notify("🖼️", "배경화면 변경", next.name);
       } },
     { label: os.settings.appearance === "dark" ? "밝은 모드" : "어두운 모드",
       run: () => os.setAppearance(os.settings.appearance === "dark" ? "light" : "dark") },

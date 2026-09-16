@@ -60,6 +60,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="ko"
       className={`${sans.variable} ${mono.variable} ${pixel.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="preload" as="image" href="/wallpaper.webp" />
+      </head>
       <body className="h-full min-h-full">
         <a
           href="#main"

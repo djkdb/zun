@@ -227,7 +227,7 @@ export function useOS() {
   return v;
 }
 
-const DEFAULT_SETTINGS: OSSettings = { appearance: "dark", wallpaper: 1, motion: true, sound: false };
+const DEFAULT_SETTINGS: OSSettings = { appearance: "dark", wallpaper: 5, motion: true, sound: false };
 
 export function OSProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, { windows: [], focused: null, top: 100, seq: 1 });
