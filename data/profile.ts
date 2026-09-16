@@ -3,7 +3,7 @@ import type { Link } from "./types";
 export const profile = {
   brand: "ZUN",
   /** Korean given name, used sparingly (e.g. contact footer). */
-  name: "성준",
+  name: "이성준",
   handle: "@zun_it_",
   tagline: "I BUILD THINGS.",
   taglineAlt: "BUILDING IN PUBLIC.",
@@ -34,7 +34,7 @@ export const profile = {
     "Build in Public",
   ],
   narrative: ["DISCOVER", "BUILD", "SHARE", "LEARN", "BUILD AGAIN"],
-  siteUrl: "https://zun.dev", // TODO: replace with the deployed URL
+  siteUrl: "https://zun-1vu.pages.dev",
   description: "Software student building with AI, code, and curiosity.",
 };
 
@@ -43,7 +43,7 @@ export const profile = {
  * fake ships. Replace hrefs and remove `todo` once confirmed.
  */
 export const links: Link[] = [
-  { label: "GitHub", href: "https://github.com/", todo: true }, // TODO: GitHub profile URL
+  { label: "GitHub", href: "https://github.com/djkdb" },
   { label: "Instagram", href: "https://www.instagram.com/zun_it_/" },
   { label: "Email", href: "mailto:", todo: true }, // TODO: contact email
   { label: "Portfolio", href: "/" },
