@@ -32,12 +32,12 @@ export function ActivityDetail({ activity, compact }: { activity: Activity; comp
       <p className="prose-ko mt-2 text-sm leading-relaxed text-fg-muted">
         {isTodo(activity.description) ? "내용 준비 중입니다." : activity.description}
       </p>
-      <div className="mt-4 border-t border-line pt-3">
-        <p className="eyebrow text-[10px]">Takeaway</p>
-        <p className="prose-ko mt-1 text-sm text-fg">
-          {isTodo(activity.takeaway) ? <span className="text-fg-dim">한 줄 정리 준비 중</span> : activity.takeaway}
-        </p>
-      </div>
+      {activity.takeaway && !isTodo(activity.takeaway) && (
+        <div className="mt-4 border-t border-line pt-3">
+          <p className="eyebrow text-[10px]">Takeaway</p>
+          <p className="prose-ko mt-1 text-sm text-fg">{activity.takeaway}</p>
+        </div>
+      )}
     </div>
   );
 }

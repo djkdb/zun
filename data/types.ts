@@ -58,7 +58,8 @@ export interface Activity {
   title: string;
   category: string;
   description: string;
-  takeaway: string;
+  /** what ZUN took from it — omitted until written, never guessed */
+  takeaway?: string;
   image?: string;
   period?: string;
   draft?: boolean;

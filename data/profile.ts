@@ -46,6 +46,6 @@ export const links: Link[] = [
   { label: "GitHub", href: "https://github.com/djkdb" },
   { label: "Instagram", href: "https://www.instagram.com/zun_it_/" },
   { label: "Links", href: "https://litt.ly/zun_it_" },
-  { label: "Email", href: "mailto:", todo: true }, // TODO: contact email
+  { label: "Email", href: "mailto:tjdwns2121@naver.com" },
   { label: "Portfolio", href: "/" },
 ];
