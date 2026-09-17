@@ -27,7 +27,7 @@ export function PlaygroundApp() {
   if (running) {
     return (
       <div className="relative h-full w-full">
-        <Playground embedded />
+        <Playground embedded onExit={() => setRunning(false)} />
       </div>
     );
   }

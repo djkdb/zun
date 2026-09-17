@@ -118,13 +118,16 @@ export function Overlay({
   flash,
   onReset,
   embedded,
+  onExit,
 }: {
   zone: string | null;
   game: GameState;
   flash: string | null;
   onReset: () => void;
-  /** running inside a ZUN OS window — the window chrome already has a close button */
+  /** running inside a ZUN OS window rather than filling the viewport */
   embedded?: boolean;
+  /** leave the playground — only wired when embedded */
+  onExit?: () => void;
 }) {
   const coarse = useMediaQuery("(pointer: coarse)");
   const isError = !!flash && !game.passed;
@@ -135,7 +138,13 @@ export function Overlay({
       <div className="flex items-start justify-between gap-2 p-3 sm:p-4">
         <div className="pointer-events-auto bg-bg-1/90 px-3 py-2 font-mono backdrop-blur-sm pixel-border">
           {embedded ? (
-            <p className="font-pixel text-sm text-fg">ZUN</p>
+            <button
+              type="button"
+              onClick={onExit}
+              className="font-pixel text-sm text-fg hover:text-accent-strong"
+            >
+              ← 닫기
+            </button>
           ) : (
             <Link href="/" className="font-pixel text-sm text-fg hover:text-accent-strong">
               ← ZUN

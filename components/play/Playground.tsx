@@ -24,7 +24,7 @@ export interface GameState {
 const SPAWN = { x: -28, z: lineZ(4), heading: 0 };
 
 /** TERMINAL CITY — drive the editor floor. Canvas + HTML overlay. */
-export function Playground({ embedded }: { embedded?: boolean } = {}) {
+export function Playground({ embedded, onExit }: { embedded?: boolean; onExit?: () => void } = {}) {
   const [zone, setZone] = useState<string | null>(null);
   const [game, setGame] = useState<GameState>({ collected: 0, total: TOKENS.length, bugs: 0, passed: false });
   const [flash, setFlash] = useState<string | null>(null);
@@ -74,8 +74,13 @@ export function Playground({ embedded }: { embedded?: boolean } = {}) {
     setFlash(null);
   }, []);
 
+  /**
+   * `fixed` covers the viewport — correct on /play, wrong inside a window:
+   * it escapes the window body and paints over the title bar, so the close
+   * button disappears and the playground cannot be shut.
+   */
   return (
-    <div className="fixed inset-0 bg-[#070b18]">
+    <div className={`${embedded ? "absolute" : "fixed"} inset-0 bg-[#070b18]`}>
       <Canvas
         shadows
         dpr={[1, 1.6]}
@@ -110,7 +115,7 @@ export function Playground({ embedded }: { embedded?: boolean } = {}) {
         </Suspense>
         <FollowCamera />
       </Canvas>
-      <Overlay embedded={embedded} zone={zone} game={game} flash={flash} onReset={onReset} />
+      <Overlay embedded={embedded} onExit={onExit} zone={zone} game={game} flash={flash} onReset={onReset} />
     </div>
   );
 }
