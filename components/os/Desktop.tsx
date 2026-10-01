@@ -62,8 +62,15 @@ export function Desktop() {
         ))}
       </div>
 
-      {/* windows */}
-      <div data-window className="absolute inset-0 z-20">
+      {/*
+        The window layer spans the whole desktop so windows can be dragged
+        anywhere, which means it also sits on top of the desktop icons. Left
+        solid it swallows every click meant for them — including when no window
+        is open at all. Each Window re-enables pointer events on itself (see
+        the `pointerEvents` in its animate prop), so only this empty spacer
+        stays transparent to the cursor.
+      */}
+      <div data-window className="pointer-events-none absolute inset-0 z-20">
         <AnimatePresence>
           {os.windows.map((w) => (
             <Window key={w.id} win={w} />

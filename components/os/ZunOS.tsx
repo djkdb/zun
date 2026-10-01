@@ -35,9 +35,25 @@ function Shell() {
   const enter = useCallback(() => {
     setPhase("desktop");
     try { sessionStorage.setItem("zunos.booted", "1"); } catch { /* ignore */ }
-    os.openApp("finder");
+
+    /*
+      On a phone a window fills nearly the whole screen, so opening one here
+      means the desktop is never actually seen and its icons cannot be reached
+      until something is closed. Wide screens have room for both, so they keep
+      the warm start. 760px is the same breakpoint the layout switches on.
+    */
+    const narrow = window.matchMedia("(max-width: 760px)").matches;
+    if (!narrow) os.openApp("finder");
+
     window.setTimeout(
-      () => os.notify("👋", "ZUN OS에 오신 걸 환영합니다", "Dock을 스쳐보고, ⌘K로 검색하고, 바탕화면을 우클릭해 보세요."),
+      () =>
+        os.notify(
+          "👋",
+          "ZUN OS에 오신 걸 환영합니다",
+          narrow
+            ? "바탕화면 아이콘을 눌러 열고, 아래 Dock으로 옮겨 다니세요."
+            : "Dock을 스쳐보고, ⌘K로 검색하고, 바탕화면을 우클릭해 보세요.",
+        ),
       700,
     );
   }, [os]);
