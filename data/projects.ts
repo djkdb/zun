@@ -475,4 +475,70 @@ export const projects: Project[] = [
     themes: ["web", "software"],
     draft: true,
   },
+  {
+    id: "macbook-starterpack",
+    title: "맥북 스타터팩",
+    tagline: "읽는 설명서가 아니라 직접 눌러야 넘어가는 퀘스트 — 12챕터 132퀘스트",
+    role: "기획 · 구현 · 디자인 전부",
+    stack: ["HTML", "CSS", "JavaScript", "Cloudflare Pages"],
+    problem:
+      "맥북을 처음 사면 단축키와 제스처를 글로 읽게 된다. 읽어서는 손에 남지 않는다. 읽는 대신 눌러야 넘어가는 구조가 필요했다.",
+    build:
+      "브라우저가 실제 키 입력과 트랙패드 제스처를 감지해 판정하고, 직접 눌러야만 다음 퀘스트로 넘어간다. 12개 챕터 · 132개 퀘스트 · 총 2610 XP에 레벨과 칭호(맥린이 → 맥북 마스터), 챕터 배지를 붙였고 진행 상황은 localStorage에 저장된다. 버전 분기는 일부러 하지 않았다 — 132개 중 macOS 버전에 따라 갈리는 건 10개 남짓인데 버전 축을 하나 더 만들면 나머지 100여 개가 전부 중복되기 때문이다. 그래서 macOS 26 Tahoe 하나로 못 박고 그 사실을 시작 화면에 표시했다.",
+    result:
+      "의존성이 0이라 HTML/CSS/JS 파일 몇 개가 전부고 빌드 단계가 없다. 디자인은 Apple의 문법 안에서만 — 인터랙션 색은 Action Blue(#0066cc) 하나뿐이고 두 번째 브랜드 색을 두지 않았다. 장식용 그라디언트가 없고, 그림자는 시스템 전체에서 '제품'에 해당하는 키캡과 챕터 아이콘에만 쓴다. 밝은 타일과 어두운 타일의 색 전환 자체가 섹션 구분선이라 테두리도 여백도 둥근 모서리도 쓰지 않았다. 제약을 먼저 정해두면 화면마다 고민할 것이 줄어든다는 걸 배웠다.",
+    demo: { label: "macbook-starterpack.pages.dev", href: "https://macbook-starterpack.pages.dev/" },
+    github: { label: "djkdb/MacBook_StarterPack", href: "https://github.com/djkdb/MacBook_StarterPack" },
+    year: "2026",
+    themes: ["web", "product", "content"],
+  },
+  {
+    id: "matest",
+    title: "시험 마스터",
+    tagline: "시험과 시험일을 고르면 커뮤니티 꿀팁에서 전략을 뽑아 공부 캘린더를 자동 생성",
+    role: "기획 · 구현 · 배포 전부",
+    stack: ["React", "Vite", "JavaScript", "PWA", "Cloudflare Pages"],
+    problem:
+      "자격증 공부는 '뭘 언제까지 얼마나' 가 안 정해져서 미뤄진다. 합격 수기는 커뮤니티에 흩어져 있고, 읽어도 내 남은 기간에 맞는 분량으로는 바뀌지 않는다.",
+    build:
+      "다섯 단계 위저드로 묶었다. 시험 선택 → 회차 선택(큐넷 국가기술자격 공공데이터 API로 실제 회차를 조회해 원서접수일·시험일·합격발표일을 가져온다) → 커뮤니티별 꿀팁에서 전략 고르기(여러 개 고르면 개념·기출·모의고사·총정리 비중이 합성된다) → 하루 공부 시간과 쉬는 요일 설정 → 시험 전날까지 일별 배분. 밀린 일정은 버튼 하나로 남은 날에 재분배되고, 원서접수 시작·마감과 발표일이 캘린더에 함께 찍힌다. 계획 엔진 · 큐넷 응답 파싱 · .ics 생성에는 단위 테스트를 붙였다.",
+    result:
+      "PWA로 만들어 스토어 없이 홈 화면에 설치되고, 서비스워커가 앱 셸을 프리캐시해 오프라인에서도 열린다. 큐넷 API만은 캐시하지 않는다(NetworkOnly) — 시험 일정은 틀린 값을 보여주느니 안 뜨는 쪽이 낫다. 접수 마감을 놓치는 게 공부량보다 먼저 오는 실패라는 걸 만들면서 알았고, 그래서 'D-day'보다 '접수 시작 D-n'을 위에 뒀다.",
+    demo: { label: "matest-ezo.pages.dev", href: "https://matest-ezo.pages.dev/" },
+    github: { label: "djkdb/matest", href: "https://github.com/djkdb/matest" },
+    year: "2026",
+    themes: ["web", "product", "ai"],
+  },
+  {
+    id: "auto-pg",
+    title: "RePub STUDIO",
+    tagline: "소재 하나로 네이버 · 블로그스팟 · 워드프레스 · 티스토리 채널별 초안까지",
+    role: "기획 · 구현",
+    stack: ["Cloudflare Pages"],
+    problem:
+      "같은 소재를 채널마다 다시 쓰는 일이 반복된다. 채널별로 요구하는 형식과 톤이 다른데 그걸 매번 사람이 기억해서 맞춘다.",
+    build:
+      "소재 URL이나 본문을 넣으면 소재 분석 → 채널별 작성 → 검수·공시 → 조립의 4단계로 돌린다. 주제와 메인 키워드를 자동 추출하고, 대가성 표시(공시)를 본문 상단에 자동 삽입하며, 태그와 JSON-LD, 썸네일·요약·인용 이미지 카드까지 만들어 내보낸다. API 키 없이 돌려볼 수 있는 데모 모드가 있다. (저장소가 비공개라 공개된 배포본에서 확인한 범위까지만 적습니다.)",
+    result: "TODO — 결과 / 배운 점",
+    demo: { label: "auto-pg.pages.dev", href: "https://auto-pg.pages.dev/" },
+    github: { label: "비공개 저장소", href: "https://github.com/djkdb/auto-pg", todo: true },
+    year: "2026",
+    themes: ["ai", "product", "content"],
+  },
+  {
+    id: "auto-blog-pg",
+    title: "PostPilot",
+    tagline: "네이버 · 워드프레스 · 블로그스팟 멀티 발행을 출처 그라운딩과 품질 게이트로 거는 관제탑",
+    role: "기획 · 구현",
+    stack: ["Cloudflare Pages"],
+    problem:
+      "자동 발행은 양을 늘리는 순간 품질이 무너진다. 출처 없는 문장과 정각 일괄 발행은 둘 다 티가 난다.",
+    build:
+      "생성 파이프라인을 5단계로 세우고 각 단계를 대시보드에서 보게 했다. 출처 리서치 → 초안 생성(날짜 가드 주입) → 품질 게이트(소제목 수 · 키워드 밀도 · AI티 스캔) → 이미지·썸네일 → 멀티 발행. 게이트를 통과한 글만 나가고, 발행은 정각에 몰지 않고 09–12시 창에 랜덤 분산한다. 황금키워드 풀과 예약 발행, 수익 화면이 함께 붙어 있다. (저장소가 비공개라 공개된 배포본에서 확인한 범위까지만 적습니다. 화면의 수치는 데모 데이터입니다.)",
+    result: "TODO — 결과 / 배운 점",
+    demo: { label: "auto-blog-pg.pages.dev", href: "https://auto-blog-pg.pages.dev/" },
+    github: { label: "비공개 저장소", href: "https://github.com/djkdb/auto-blog-pg", todo: true },
+    year: "2026",
+    themes: ["ai", "product", "software"],
+  },
 ];

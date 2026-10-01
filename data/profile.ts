@@ -47,7 +47,7 @@ export const profile = {
     stats: [
       { label: "팔로워", value: "1,543", note: "@zun_it_ · 2026.09 기준" },
       { label: "최고 조회수", value: "12.5만", note: "컴활 마스터 웹앱" },
-      { label: "배포한 것", value: "25", note: "Cloudflare · 직접 접속해 확인" },
+      { label: "배포한 것", value: "29", note: "Cloudflare · 직접 접속해 확인" },
       { label: "게시물", value: "33", note: "만드는 과정 기록" },
     ],
     line: "0에서 시작해 한 달 반. 만든 걸 올린 게 아니라, 필요한 걸 만들어 올렸습니다.",
