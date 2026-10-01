@@ -17,7 +17,7 @@ export const projects: Project[] = [
   {
     id: "zunran",
     title: "ZUNRAN",
-    tagline: "야간 알바를 버티는 웨이브 게임 — 업적 40종, 전 세계 같은 데일리",
+    tagline: "편의점 야간근무 — 새벽 3시, 혼자 남았다. 업적 40종, 전 세계 같은 데일리",
     role: "기획 · 엔진 · 밸런스 · 테스트 전부",
     stack: ["TypeScript", "Canvas", "Vitest", "Playwright", "Cloudflare Pages"],
     problem:
@@ -34,7 +34,7 @@ export const projects: Project[] = [
   {
     id: "k-history",
     title: "자격증 학습 플랫폼",
-    tagline: "한국사 · SQLD · 컴활 등 5개 시험을 한 코드베이스에서 배포",
+    tagline: "한국사 · SQLD · 컴활 · 토익 · 정보처리기사 — 다섯 시험을 한 코드베이스에서",
     role: "기획 · 구현 · 테스트 전부",
     stack: ["TypeScript", "SVG", "Playwright", "Cloudflare Pages"],
     problem:
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     build:
       "평균선 하나만 그리면 '무엇을 더 해야 하나'가 안 나오므로 과목별 선을 겹쳐 그리고 40점(과락)과 60점(합격)에 기준선을 넣었다. 그래야 '평균은 오르는데 데이터베이스만 제자리'가 보인다. 선 몇 개를 위해 첫 화면을 무겁게 할 이유가 없어서 차트 라이브러리 없이 SVG로 직접 그렸다. 실기에는 없던 '틀린 것만 다시 적기' 거르개를 넣고, 되틀린 횟수로 줄을 세운 '자주 틀리는 곳'을 홈에서 바로 가게 했다.",
     result:
-      "한 저장소에서 k-history · SQLD · 컴활 · zunic · zuneip 다섯 배포를 굴린다. 검사를 쓰면서 두 번 헛걸렸다 — 포인터 문항은 물음이 '다음 C 프로그램의 출력 결과는?'이라 낱말로 가려낼 수 없었고, 적는 칸 안내말은 placeholder라 innerText에 잡히지 않았다. 둘 다 멀쩡한 화면을 실패로 적었다. 데이터에서 기대 집합을 뽑아 대조하도록 고쳤다.",
+      "한 저장소에서 한국사 레전드 마스터 · SQLD 마스터 · 컴활 마스터 · 토익 마스터 · 정보처리기사 마스터 다섯 배포를 굴린다. 검사를 쓰면서 두 번 헛걸렸다 — 포인터 문항은 물음이 '다음 C 프로그램의 출력 결과는?'이라 낱말로 가려낼 수 없었고, 적는 칸 안내말은 placeholder라 innerText에 잡히지 않았다. 둘 다 멀쩡한 화면을 실패로 적었다. 데이터에서 기대 집합을 뽑아 대조하도록 고쳤다.",
     demo: { label: "k-history.pages.dev", href: "https://k-history.pages.dev/" },
     github: { label: "djkdb/k-history", href: "https://github.com/djkdb/k-history" },
     year: "2026",
@@ -294,6 +294,7 @@ export const projects: Project[] = [
       "안내문 원문을 그대로 CLI 에 던지면 파싱해서 Supabase 에 넣는다. 쓰기는 CLI, 읽기와 진행상태 토글은 웹 대시보드로 역할을 갈랐다. 파싱은 Anthropic API 종량과금 대신 구독 중인 Claude Code CLI 를 서브프로세스로 호출해 처리한다.",
     result:
       "실제로 내 활동 8개를 이걸로 굴리고 있다. 대시보드는 CDN 만 쓰는 단일 HTML 파일이라 빌드 단계가 없다.",
+    demo: { label: "zun-activity-management.pages.dev", href: "https://zun-activity-management.pages.dev/" },
     github: { label: "djkdb/zun_activity_management", href: "https://github.com/djkdb/zun_activity_management" },
     year: "2026",
     themes: ["product", "ai", "software"],
@@ -342,6 +343,38 @@ export const projects: Project[] = [
     github: { label: "djkdb/zunvis", href: "https://github.com/djkdb/zunvis" },
     year: "2026",
     themes: ["ai", "software", "experiment"],
+  },
+  {
+    id: "zunmorrow",
+    title: "내일, 내 일",
+    tagline: "잠들기 전 한 번의 이야기로 일정 · 준비물 · 이동을 연결하는 AI 일상 준비 에이전트",
+    role: "기획 · 구현",
+    stack: ["Cloudflare Workers"],
+    problem:
+      "내일 할 일을 알아도 준비물과 출발 시각은 따로 생각해야 한다. 그 사이에서 빠지는 것들이 아침을 망친다.",
+    build:
+      "잠들기 전에 내일 일정을 한 번 말하면 준비물과 이동을 함께 엮어 준다. (저장소가 비공개라 공개된 배포본에서 확인한 범위까지만 적습니다.)",
+    result: "TODO — 결과 / 배운 점",
+    demo: { label: "zunmorrow.tjdwns2121.workers.dev", href: "https://zunmorrow.tjdwns2121.workers.dev/" },
+    github: { label: "비공개 저장소", href: "https://github.com/djkdb/zunmorrow", todo: true },
+    year: "2026",
+    themes: ["ai", "product"],
+  },
+  {
+    id: "zun18",
+    title: "18개월",
+    tagline: "군생활 시뮬레이션",
+    role: "기획 · 구현",
+    stack: ["Cloudflare Pages"],
+    problem: "TODO — 어떤 문제에서 출발했는지",
+    build:
+      "18개월을 시뮬레이션으로 겪게 하는 웹 게임입니다. (저장소가 비공개라 공개된 배포본에서 확인한 범위까지만 적습니다.)",
+    result: "TODO — 결과 / 배운 점",
+    demo: { label: "zun18.pages.dev", href: "https://zun18.pages.dev/" },
+    github: { label: "비공개 저장소", href: "https://github.com/djkdb/zun18", todo: true },
+    year: "2026",
+    themes: ["web", "experiment"],
+    draft: true,
   },
   {
     id: "zunfood",
@@ -414,16 +447,17 @@ export const projects: Project[] = [
   {
     id: "zuntudy",
     title: "ZUNTUDY",
-    tagline: "TODO: 한 줄 소개",
-    role: "TODO: 역할",
-    stack: [],
-    problem: "TODO — 저장소에 README가 비어 있어(Initial commit) 아직 설명을 옮기지 못했습니다.",
-    build: "TODO: 무엇을 어떻게 만들었는지",
-    result: "TODO: 결과 / 배운 점",
+    tagline: "AI에게 코드를 시키는 법이 아니라, AI와 함께 서비스를 만드는 법",
+    role: "기획 · 모집 · 운영 · 구현",
+    stack: ["Cloudflare Pages"],
+    problem:
+      "바이브코딩을 배우고 싶은 사람은 늘었는데, 대부분의 자료가 '프롬프트 잘 쓰는 법'에서 끝난다. 아이디어를 배포까지 끌고 가 본 경험이 없으면 거기서 멈춘다.",
+    build:
+      "만드는 법을 배우는 바이브코딩 스터디와 기록하는 법을 배우는 개발자 블로그 스터디, 두 갈래로 모집 페이지를 만들었다. 아이디어 하나를 들고 오면 배포까지 같이 가는 것이 기준이고, AI 구독이 없어도 처음이어도 들어올 수 있게 조건을 낮췄다.",
+    result: "TODO — 실제 모집 결과 / 운영하며 배운 것 한 줄",
     demo: { label: "zuntudy.pages.dev", href: "https://zuntudy.pages.dev/" },
     year: "2026",
-    themes: ["web", "product"],
-    draft: true,
+    themes: ["web", "product", "content"],
   },
   {
     id: "capme",
