@@ -10,7 +10,7 @@ export const nowItems: NowItem[] = [
     id: "portfolio",
     label: "ZUN PORTFOLIO",
     status: "shipping",
-    note: "흩어진 배포 20여 개를 하나의 OS로 묶는 중.",
+    note: "배포 20여 개를 하나의 OS로 묶는 중. 새로 만든 것이 생기면 여기부터 갱신한다.",
   },
   {
     id: "ai-experiments",
@@ -32,4 +32,4 @@ export const nowItems: NowItem[] = [
   },
 ];
 
-export const nowUpdated = "2026-09"; // 이 파일을 고칠 때마다 함께 올려주세요
+export const nowUpdated = "2026-10"; // 이 파일을 고칠 때마다 함께 올려주세요

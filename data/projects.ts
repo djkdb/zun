@@ -166,6 +166,184 @@ export const projects: Project[] = [
 
   /* ---- 배포는 확인됐지만 설명이 아직 없는 것들 ---- */
   {
+    id: "zunterview",
+    title: "INTERVIEW//AI",
+    tagline: "질문만 하지 않는다 — 내 답변을 듣고 다시 파고드는 모의면접실",
+    role: "기획 · 데이터 설계 · 구현 전부",
+    stack: ["React", "Vite", "TypeScript", "Tailwind", "Framer Motion", "Anthropic SDK"],
+    problem:
+      "모의면접 서비스는 질문을 순서대로 읽어 줄 뿐이라, 실제 면접에서 제일 무서운 꼬리질문이 없다. 그리고 개발 직무 질문만 있어서 회계·간호·생산관리를 준비하는 사람은 쓸 수가 없다.",
+    build:
+      "직무를 51개 도메인 · 72개 직군 · 256개 직무로 나누고 질문 7,989개를 직무별 설계도에 맞춰 붙였다. 꼬리질문은 답변에서 실제로 말한 표현을 집어 다시 묻고, 파고드는 방향이 직무마다 다르다 — 개발은 기술 선택→트레이드오프→장애, 회계는 업무→기준→오류→처리. 기업 54곳 1,547문항은 인재상·전형과 함께 넣었고, 이력서를 올리면 면접관이 그 주장을 검증하는 질문을 던진다.",
+    result:
+      "어떤 질문도 '기출'로 표시하지 않고 공개후기 기반 · 공식자료 기반 · 공고기반 · 직무기반으로 출처를 밝힌다. 연습용 재구성과 실제 기출은 다른 것이고, 그 구분을 흐리면 쓰는 사람이 잘못된 기대를 갖는다.",
+    demo: { label: "zunterview.pages.dev", href: "https://zunterview.pages.dev/" },
+    github: { label: "djkdb/zunterview", href: "https://github.com/djkdb/zunterview" },
+    year: "2026",
+    themes: ["ai", "product", "web"],
+  },
+  {
+    id: "zuncam",
+    title: "Campus OS",
+    tagline: "'무엇이 있는지'가 아니라 '그래서 지금 뭘 해야 하지'에 답하는 대학생활 OS",
+    role: "기획 · 구현 · 우선순위 엔진 설계",
+    stack: ["Next.js", "React", "TypeScript", "Tailwind", "Anthropic SDK", "Cloudflare Workers"],
+    problem:
+      "시간표 앱, 과제 앱, 캘린더를 따로 쓰면 각각은 맞는데 '지금 이 순간 뭘 해야 하는가'는 아무도 안 알려준다. 마감까지 7시간 남은 과제와 2시간 뒤 풋살과 이동 시간을 머릿속에서 합쳐야 한다.",
+    build:
+      "시간표·과제·일정을 하나의 컨텍스트로 합치고, 우선순위·플래너·충돌 계산은 전부 결정론적 코드로 짰다. AI 는 그 결과를 설명하는 데만 쓴다 — 계산은 코드, 설명은 AI.",
+    result:
+      "AI 에게 숫자를 맡기면 그럴듯하지만 재현되지 않는 답이 나온다. 계산을 코드로 내리니 테스트가 가능해졌고, 같은 상황에서 같은 추천이 나온다.",
+    demo: { label: "zuncam.tjdwns2121.workers.dev", href: "https://zuncam.tjdwns2121.workers.dev/" },
+    github: { label: "djkdb/zuncam", href: "https://github.com/djkdb/zuncam" },
+    year: "2026",
+    themes: ["ai", "product", "software"],
+  },
+  {
+    id: "zun2o",
+    title: "12%",
+    tagline: "새벽 2시, 폐교 앞 전화부스에서 주운 휴대폰 — 배터리 12%",
+    role: "기획 · 시나리오 · 구현 전부",
+    stack: ["React", "Vite", "TypeScript", "Web Audio", "PWA"],
+    problem:
+      "주운 휴대폰 호러(Simulacra 계열)를 웹에서 하려면 보통 영상과 음원을 잔뜩 받아야 한다. 그러면 모바일에서 열자마자 수십 MB 를 쓰고, 저작권도 따라붙는다.",
+    build:
+      "화면 전체가 실종된 유튜버의 휴대폰이다. 잠금을 풀고 메시지·사진·녹음·통화·브라우저를 뒤지며 챕터 5개를 지나 엔딩 3개 중 하나에 닿는다. 외부 음원을 하나도 쓰지 않았다 — 소리는 Web Audio 로 합성하고, 목소리는 브라우저 음성 합성에 음절마다 숨소리를 입혔다. 홈 화면에 추가하면 오프라인으로 돈다.",
+    result:
+      "실제 시각과 무관하게 플레이할 수 있게 하되, 진짜 새벽 2시에 끝까지 가면 대사 한 줄이 더 나온다. 조건을 강제하지 않으면서 보상만 숨겨 두는 쪽이 낫다고 판단했다.",
+    demo: { label: "zun2o.pages.dev", href: "https://zun2o.pages.dev/" },
+    github: { label: "djkdb/zun2o", href: "https://github.com/djkdb/zun2o" },
+    year: "2026",
+    themes: ["web", "experiment", "product"],
+  },
+  {
+    id: "zunbeat",
+    title: "BEAT//SHIFT",
+    tagline: "곡 9개를 전부 코드로 작곡한 4레인 리듬게임",
+    role: "기획 · 작곡 · 구현 전부",
+    stack: ["React", "Vite", "TypeScript", "Web Audio"],
+    problem:
+      "리듬게임의 진짜 장벽은 게임 로직이 아니라 음원이다. 외부 음원을 쓰면 배포할 수 없고, 무료 음원을 쓰면 판정 타이밍을 내가 통제할 수 없다.",
+    build:
+      "곡 9개를 Web Audio 로 합성해 직접 작곡했다. 리드 음색은 슈퍼소우·칩튠 펄스·FM 벨 중에서 고르고, 킥 디스토션·하이햇 레벨·사이드체인 양으로 장르를 낸다. 난이도 3단계로 차트 27개. 키보드(D F J K)와 모바일 터치를 같이 받는다.",
+    result:
+      "외부 음원·샘플 파일이 0개라 저작권 문제가 없고, 곡 간 음량은 마스터 단계에서 맞췄다. 기록은 localStorage 에만 저장해 서버가 필요 없다.",
+    demo: { label: "zunbeat.pages.dev", href: "https://zunbeat.pages.dev/" },
+    github: { label: "djkdb/zunbeat", href: "https://github.com/djkdb/zunbeat" },
+    year: "2026",
+    themes: ["web", "experiment"],
+  },
+  {
+    id: "zunho",
+    title: "THE LAST ROOM",
+    tagline: "잠긴 서재 — 모든 사물이 누군가 남긴 문장이다",
+    role: "기획 · 퍼즐 설계 · 구현 전부",
+    stack: ["React", "Vite", "TypeScript", "SVG", "Web Audio"],
+    problem:
+      "방탈출 게임은 보통 이미지 에셋 덩어리라 로딩이 길고, 세로 화면에서 깨진다.",
+    build:
+      "퍼즐 6개가 사슬처럼 이어지고, 주의 깊게 보면 두 번째 엔딩이 있다. 그림은 전부 손으로 쓴 SVG/CSS 이고 소리는 Web Audio 로 실시간 합성해 외부 파일이 하나도 없다. 한국어·영어를 지원하고 9:16 세로 화면(화면 녹화 포함)에서도 동작한다.",
+    result: "TODO — 플레이한 사람들 반응 한 줄",
+    demo: { label: "zunho.pages.dev", href: "https://zunho.pages.dev/" },
+    github: { label: "djkdb/zunho", href: "https://github.com/djkdb/zunho" },
+    year: "2026",
+    themes: ["web", "experiment"],
+  },
+  {
+    id: "zunsic",
+    title: "MARKET//30",
+    tagline: "30일 · 100만원 · 하나의 시장 — 가상 주식 투자 게임",
+    role: "기획 · 시뮬레이션 설계 · 구현",
+    stack: ["React", "Vite", "TypeScript", "Tailwind", "Zustand"],
+    problem:
+      "투자를 연습해 보고 싶은데 실제 계좌로 배우면 수업료가 너무 비싸다. 반대로 '모의투자'를 표방하면서 실제 종목을 쓰면 투자 권유로 읽힐 수 있다.",
+    build:
+      "가상 기업·가격·뉴스로만 이루어진 닫힌 시장을 만들었다. 매일 아침 뉴스가 나오고 가격이 움직이며 30일 뒤 성적이 나온다. 실제 주가 API 를 쓰지 않고 증권 계좌 연결·주문·결제 기능도 넣지 않았다.",
+    result:
+      "README 와 앱 안에 '완전히 가상이며 투자 추천이 아니다'를 먼저 적었다. 재미있게 만드는 것보다 오해하지 않게 만드는 게 먼저인 종류의 소재가 있다.",
+    demo: { label: "zunsic.pages.dev", href: "https://zunsic.pages.dev/" },
+    github: { label: "djkdb/zunsic", href: "https://github.com/djkdb/zunsic" },
+    year: "2026",
+    themes: ["web", "product", "experiment"],
+  },
+  {
+    id: "zunmal",
+    title: "말랑 뽑기방",
+    tagline: "말랑이 32종을 모으는 모바일 우선 수집 게임",
+    role: "기획 · 캐릭터 디자인 · 구현 전부",
+    stack: ["React", "Vite", "TypeScript", "Three.js", "Zustand", "SVG"],
+    problem:
+      "수집형 게임은 캐릭터 에셋이 전부인데, 이미지를 쓰면 종수를 늘릴수록 용량이 늘고 등급별 연출을 바꾸기 어렵다.",
+    build:
+      "말랑이 32종을 전부 SVG 로 직접 그렸다(일반 10 · 레어 7 · 에픽 6 · 전설 4 · 신화 2 · 약 2000분의 1 시크릿 3). 등급마다 캡슐 색·효과음·결과 연출이 다르고 시크릿이 나올 때는 머신이 이상해진다. 꾹 누르면 찌그러지고 당기면 늘어나는 촉감은 찰박이는 소리까지 WebAudio 로 합성했다.",
+    result: "TODO — 실제로 몇 명이 뽑아봤는지 / 반응 한 줄",
+    demo: { label: "zunmal.pages.dev", href: "https://zunmal.pages.dev/" },
+    github: { label: "djkdb/zunmal", href: "https://github.com/djkdb/zunmal" },
+    year: "2026",
+    themes: ["web", "experiment"],
+  },
+  {
+    id: "zun-board",
+    title: "zun-board",
+    tagline: "서포터즈·대외활동 8개를 동시에 굴리기 위한 개인용 대시보드",
+    role: "기획 · CLI · 파싱 · 대시보드 전부",
+    stack: ["Node.js", "Supabase", "Claude Code CLI", "Cloudflare Pages"],
+    problem:
+      "서포터즈를 여러 개 하면 운영진 안내문이 카톡·메일·노션으로 흩어져 들어온다. 그걸 매번 손으로 옮겨 적는 게 활동 자체보다 번거로웠다.",
+    build:
+      "안내문 원문을 그대로 CLI 에 던지면 파싱해서 Supabase 에 넣는다. 쓰기는 CLI, 읽기와 진행상태 토글은 웹 대시보드로 역할을 갈랐다. 파싱은 Anthropic API 종량과금 대신 구독 중인 Claude Code CLI 를 서브프로세스로 호출해 처리한다.",
+    result:
+      "실제로 내 활동 8개를 이걸로 굴리고 있다. 대시보드는 CDN 만 쓰는 단일 HTML 파일이라 빌드 단계가 없다.",
+    github: { label: "djkdb/zun_activity_management", href: "https://github.com/djkdb/zun_activity_management" },
+    year: "2026",
+    themes: ["product", "ai", "software"],
+  },
+  {
+    id: "songbang",
+    title: "셋리.",
+    tagline: "노래방에서 '뭐 부르지' 하는 시간을 없애는 랜덤 선곡기",
+    role: "기획 · 구현",
+    stack: ["JavaScript", "GitHub Pages"],
+    problem:
+      "노래방에서 인기차트를 한참 뒤지다 시간을 버린다. 정작 내가 부를 수 있는 노래는 따로 있는데 그게 어디에도 정리돼 있지 않다.",
+    build:
+      "내 노래 목록에 제목·가수·TJ/금영 번호·태그를 저장해 두고, 버튼 하나로 뽑는다. 내 노래 / 인기차트 / 둘 다 중에 고르고 장르로 거를 수 있으며, 오늘 이미 뽑은 곡은 제외한다.",
+    result: "TODO — 실제로 노래방에서 써본 결과 한 줄",
+    demo: { label: "djkdb.github.io/songbang", href: "https://djkdb.github.io/songbang/" },
+    github: { label: "djkdb/songbang", href: "https://github.com/djkdb/songbang" },
+    year: "2026",
+    themes: ["web", "product"],
+  },
+  {
+    id: "youju",
+    title: "YOUJU",
+    tagline: "당신이라는 우주 — 하루가 달이 되고, 한 달이 행성이 되고, 한 해가 우주가 된다",
+    role: "기획 · 3D 구현",
+    stack: ["React", "Vite", "TypeScript", "Three.js", "R3F", "Zustand"],
+    problem:
+      "일기 앱은 쓸수록 목록만 길어진다. 1년을 썼는데 1년이 어땠는지는 여전히 안 보인다.",
+    build: "1년을 하나의 태양계로, 열두 달을 행성으로 띄운다. 하루의 기록이 달이 되어 그 달 행성 주위를 돈다.",
+    result: "TODO — 결과 / 배운 점",
+    github: { label: "djkdb/youju", href: "https://github.com/djkdb/youju" },
+    year: "2026",
+    themes: ["web", "experiment"],
+  },
+  {
+    id: "zunvis",
+    title: "JUNVIS",
+    tagline: "macOS 개인 AI OS — 개발 비서가 아니라 CTO·콘텐츠 매니저·PM",
+    role: "기획 · 구현",
+    stack: ["Shell", "macOS"],
+    problem:
+      "AI 비서 도구는 많은데 전부 개발 보조에 머문다. 나에게 필요한 건 코드를 짜 주는 것보다 무엇을 만들지 같이 정하는 쪽이었다.",
+    build:
+      "Finder 에서 더블클릭하면 터미널이 열리고 코드 최신화부터 알아서 진행한다. 새 AI 비서를 처음부터 만들지 않고, 최고 수준 오픈소스를 분석해 장점만 흡수하는 방향으로 잡았다.",
+    result: "TODO — 결과 / 배운 점",
+    github: { label: "djkdb/zunvis", href: "https://github.com/djkdb/zunvis" },
+    year: "2026",
+    themes: ["ai", "software", "experiment"],
+  },
+  {
     id: "zunfood",
     title: "MEALGAME",
     tagline: "오늘 뭐 먹지 — 고민하지 말고 게임으로 정하는 밥집 결정기",
@@ -258,7 +436,7 @@ export const projects: Project[] = [
       "Cloudflare Pages · Netlify · Vercel 모두 .node-version을 읽으므로 GitHub Actions와 같은 버전으로 고정했다. 호스트가 옛 Node로 기본 설정돼 있어도 CI와 다른 빌드가 나오지 않는다.",
     result: "TODO: 결과 / 배운 점",
     demo: { label: "capme.pages.dev", href: "https://capme.pages.dev/" },
-    github: { label: "djkdb/capme", href: "https://github.com/djkdb/capme" },
+    github: { label: "비공개 저장소", href: "https://github.com/djkdb/capme", todo: true },
     year: "2026",
     themes: ["web", "software"],
     draft: true,

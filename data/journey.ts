@@ -27,7 +27,7 @@ export const journey: JourneyItem[] = [
     year: "2026",
     title: "만들고, 올리고, 다시 만들기",
     description:
-      "8월에 STUDY CORP와 STUDYUP을 만들고, 8월 1일부터 @zun_it_에 만드는 과정을 올리기 시작했습니다. 9월에는 Cavero와 MEALGAME을 붙잡았고, 그 사이 컴활 웹앱 게시물이 12.5만 조회를 기록하면서 '보여주고 싶은 것'보다 '필요한 것'을 만들어야 한다는 걸 배웠습니다. 한 달 반 만에 팔로워 1,543명.",
+      "8월에 STUDY CORP와 STUDYUP을 만들고, 8월 1일부터 @zun_it_에 만드는 과정을 올리기 시작했습니다. 9월에는 Cavero와 MEALGAME을, 9월 말부터 10월 초까지 2주 동안 INTERVIEW//AI · Campus OS · 12% · BEAT//SHIFT · THE LAST ROOM · MARKET//30 · 말랑 뽑기방을 만들어 배포했습니다. 그 사이 컴활 웹앱 게시물이 12.5만 조회를 기록하면서 '보여주고 싶은 것'보다 '필요한 것'을 만들어야 한다는 걸 배웠습니다.",
     keywords: ["AI", "Web", "Content", "Startup"],
   },
   {
