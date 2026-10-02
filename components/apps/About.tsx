@@ -5,6 +5,36 @@ import { nowItems, nowUpdated } from "@/data/now";
 import { useOS } from "@/components/os/OSProvider";
 import { ZunMark } from "@/components/os/ZunMark";
 import { Chip } from "./shell";
+import { useCallback, useState } from "react";
+
+const emailHref = links.find((l) => l.label === "Email")?.href ?? "";
+const emailAddress = emailHref.replace(/^mailto:/, "");
+
+/** Copy, then say so — the confirmation is the whole point of the button. */
+function CopyEmail({ value }: { value: string }) {
+  const [done, setDone] = useState(false);
+  const copy = useCallback(() => {
+    navigator.clipboard
+      ?.writeText(value)
+      .then(() => {
+        setDone(true);
+        window.setTimeout(() => setDone(false), 1800);
+      })
+      .catch(() => {
+        /* clipboard blocked — the address is selectable right next to this */
+      });
+  }, [value]);
+
+  return (
+    <button
+      type="button"
+      onClick={copy}
+      className="rounded-lg border border-line-strong px-2.5 py-1 font-mono text-[11px] text-fg-muted transition-colors hover:bg-bg-3/60"
+    >
+      {done ? "복사됨" : "복사"}
+    </button>
+  );
+}
 
 /** "About This Mac", reinterpreted as "About ZUN". */
 export function About() {
@@ -64,7 +94,27 @@ export function About() {
           ))}
         </ul>
 
-        <div className="mt-6 flex flex-wrap gap-2">
+        {/*
+          The address itself, not just a button labelled "Email".
+
+          It used to render only as a chip reading "Email", so the address never
+          appeared on screen: a recruiter could not write it down, and on a
+          phone a mailto chip either hands you off to a mail app or, inside an
+          in-app browser, does nothing at all. Showing it plainly with a copy
+          button leaves a route that works in every one of those cases.
+        */}
+        <p className="mt-6 font-mono text-[10.5px] tracking-wider text-fg-dim">연락</p>
+        <div className="mt-1.5 flex flex-wrap items-center gap-2">
+          <a
+            href={emailHref}
+            className="inline-flex min-h-[26px] items-center select-all break-all font-mono text-[13px] text-fg underline decoration-line-strong underline-offset-4 hover:decoration-accent"
+          >
+            {emailAddress}
+          </a>
+          <CopyEmail value={emailAddress} />
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-2">
           {links.map((l) => (
             <a
               key={l.label}

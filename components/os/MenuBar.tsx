@@ -153,7 +153,7 @@ export function MenuBar() {
           type="button"
           aria-label="찾기"
           onClick={() => os.setSpotlight(true)}
-          className="rounded px-2 py-0.5 hover:bg-white/10"
+          className="rounded px-2 py-1 hover:bg-white/10"
         >
           🔍
         </button>

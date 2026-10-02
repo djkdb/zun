@@ -6,6 +6,7 @@ import { ContextMenu } from "./ContextMenu";
 import { DesktopIcon } from "./DesktopIcon";
 import { Dock } from "./Dock";
 import { MenuBar } from "./MenuBar";
+import { Nameplate } from "./Nameplate";
 import { Notifications } from "./Notifications";
 import { PowerScreen } from "./PowerScreen";
 import { Spotlight } from "./Spotlight";
@@ -54,6 +55,8 @@ export function Desktop() {
       <div data-menubar>
         <MenuBar />
       </div>
+
+      <Nameplate />
 
       {/* desktop icons */}
       <div className="absolute inset-x-2.5 bottom-28 top-9 z-10 max-[760px]:inset-x-3 max-[760px]:bottom-[8.5rem] max-[760px]:top-auto max-[760px]:grid max-[760px]:grid-cols-4 max-[760px]:gap-1.5">

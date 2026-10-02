@@ -124,7 +124,7 @@ export function Window({ win }: { win: WindowState }) {
           isFocused ? "bg-bg-3/70" : "bg-bg-2/60"
         } ${narrow || win.isMaximized ? "" : "cursor-grab active:cursor-grabbing"}`}
       >
-        <div className="flex flex-none items-center gap-1.5">
+        <div className="flex flex-none items-center gap-1.5 pointer-coarse:gap-2">
           <WindowControl kind="close" active={isFocused} onClick={() => closeWindow(win.id)} />
           <WindowControl kind="min" active={isFocused} onClick={() => minimizeWindow(win.id)} />
           <WindowControl kind="zoom" active={isFocused} onClick={() => zoomWindow(win.id)} disabled={narrow} />
@@ -132,7 +132,7 @@ export function Window({ win }: { win: WindowState }) {
         <p className="pointer-events-none flex-1 truncate text-center font-mono text-[10.5px] uppercase tracking-[0.18em] text-fg-dim">
           {win.title}
         </p>
-        <div className="w-[58px] flex-none" aria-hidden />
+        <div className="w-[58px] flex-none pointer-coarse:w-[100px]" aria-hidden />
       </div>
 
       {/* content */}
@@ -179,7 +179,14 @@ function WindowControl({
       aria-label={c.label}
       disabled={disabled}
       onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={`grid h-[15px] w-[15px] place-items-center rounded-[3px] border font-mono text-[10px] leading-none transition-colors disabled:opacity-30 ${
+      /*
+        15px is the right weight next to a 36px title bar with a mouse, but it
+        is below the 24px WCAG 2.5.8 minimum and, with 6px gaps, the centres sit
+        21px apart — too close to simply widen the hit area, since 44px boxes
+        would overlap and fire the neighbour. So the control itself grows on
+        touch screens: 28px with an 8px gap puts the centres 36px apart.
+      */
+      className={`grid h-[15px] w-[15px] place-items-center rounded-[3px] border font-mono text-[10px] leading-none transition-colors disabled:opacity-30 pointer-coarse:h-7 pointer-coarse:w-7 pointer-coarse:text-[13px] ${
         active
           ? `border-line-strong bg-bg-3/70 text-fg-muted ${c.hover}`
           : "border-line bg-bg-2/60 text-fg-dim"
