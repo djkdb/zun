@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import type { Link as LinkData } from "@/data/types";
 
 /** Shared chrome pieces so every app reads as the same OS, not twelve designs. */
 
@@ -128,6 +129,49 @@ export function Chip({ children }: { children: ReactNode }) {
   return (
     <span className="mr-1.5 mt-1.5 inline-block rounded border border-accent/35 bg-accent-soft px-2 py-0.5 font-mono text-[10.5px] text-accent-strong">
       {children}
+    </span>
+  );
+}
+
+/**
+ * A project's demo and source, meant to sit beside its title.
+ *
+ * Both apps used to put these at the very end of the write-up, so seeing a
+ * project live meant scrolling past three paragraphs first — the one action a
+ * visitor most wants was the one placed furthest away. A private repository's
+ * link would 404 for visitors, so it renders as a plain label, not a link.
+ */
+export function ProjectLinks({ demo, github }: { demo?: LinkData; github?: LinkData }) {
+  if (!demo && !github) return null;
+  return (
+    <span className="inline-flex flex-wrap items-center gap-1.5">
+      {demo && (
+        <a
+          href={demo.href}
+          target="_blank"
+          rel="noreferrer noopener"
+          title={demo.label}
+          className="inline-flex min-h-6 items-center rounded-md bg-accent px-2.5 font-mono text-[11px] font-bold text-bg hover:bg-accent-strong"
+        >
+          열어보기 ↗
+        </a>
+      )}
+      {github &&
+        (github.todo ? (
+          <span className="inline-flex min-h-6 items-center rounded-md border border-line px-2.5 font-mono text-[11px] text-fg-dim">
+            {github.label}
+          </span>
+        ) : (
+          <a
+            href={github.href}
+            target="_blank"
+            rel="noreferrer noopener"
+            title={github.label}
+            className="inline-flex min-h-6 items-center rounded-md border border-line-strong px-2.5 font-mono text-[11px] text-fg hover:bg-bg-3/60"
+          >
+            GitHub ↗
+          </a>
+        ))}
     </span>
   );
 }

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { projects } from "@/data";
 import type { AppWindowProps } from "@/components/os/types";
-import { AppSplit, Chip, Field, ScrollPane, SideGroup, SideItem, Todo } from "./shell";
+import { AppSplit, Chip, Field, ProjectLinks, ScrollPane, SideGroup, SideItem, Todo } from "./shell";
 
 export function ProjectsApp({ win }: AppWindowProps) {
   const [id, setId] = useState(win?.arg ?? projects[0]?.id);
@@ -36,6 +36,7 @@ export function ProjectsApp({ win }: AppWindowProps) {
                   DRAFT
                 </span>
               )}
+              <ProjectLinks demo={p.demo} github={p.github} />
             </div>
             <p className="mt-1 text-[13.5px] text-fg-muted">{p.tagline}</p>
             <p className="mt-2 font-mono text-[11px] text-fg-dim">
@@ -50,28 +51,6 @@ export function ProjectsApp({ win }: AppWindowProps) {
           <Field label="BUILD">{p.build.startsWith("TODO") ? <Todo>{p.build}</Todo> : p.build}</Field>
           <Field label="RESULT">{p.result.startsWith("TODO") ? <Todo>{p.result}</Todo> : p.result}</Field>
 
-          <div className="mt-6 flex flex-wrap gap-2">
-            {p.demo && (
-              <a
-                href={p.demo.href}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-lg bg-accent px-3.5 py-1.5 text-xs font-bold text-bg hover:bg-accent-strong"
-              >
-                ↗ {p.demo.label}
-              </a>
-            )}
-            {p.github && (
-              <a
-                href={p.github.href}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-lg border border-line-strong px-3.5 py-1.5 text-xs text-fg hover:bg-bg-3/60"
-              >
-                GitHub · {p.github.label}
-              </a>
-            )}
-          </div>
         </div>
       </ScrollPane>
     </AppSplit>

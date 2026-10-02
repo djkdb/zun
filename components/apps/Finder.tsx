@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import { activities, contentItems, journey, projects } from "@/data";
 import { useOS } from "@/components/os/OSProvider";
 import type { AppWindowProps } from "@/components/os/types";
-import { AppSplit, Chip, Field, ScrollPane, SearchBox, Seg, SideGroup, SideItem, Todo, Toolbar } from "./shell";
+import type { Link } from "@/data/types";
+import { AppSplit, Chip, Field, ProjectLinks, ScrollPane, SearchBox, Seg, SideGroup, SideItem, Todo, Toolbar } from "./shell";
 
 type ViewId = "projects" | "drafts" | "journey" | "activities" | "content";
 
@@ -16,6 +17,8 @@ interface Row {
   meta: string;
   date: string;
   detail: { why?: string; what?: string; result?: string; stack?: string[]; open?: () => void };
+  demo?: Link;
+  github?: Link;
 }
 
 export function Finder({ win }: AppWindowProps) {
@@ -45,6 +48,8 @@ export function Finder({ win }: AppWindowProps) {
           kind: p.stack[0] ?? (p.draft ? "TODO" : "웹"),
           meta: p.role,
           date: p.year ?? "—",
+          demo: p.demo,
+          github: p.github,
           detail: {
             why: p.problem,
             what: p.build,
@@ -135,6 +140,24 @@ export function Finder({ win }: AppWindowProps) {
                     <span className="flex items-center gap-2.5">
                       <span aria-hidden>{r.icon}</span>
                       <span className="truncate">{r.name}</span>
+                      {r.demo && (
+                        <a
+                          href={r.demo.href}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          title={r.demo.label}
+                          aria-label={`${r.name} 열어보기 (새 탭)`}
+                          onPointerDown={(e) => e.stopPropagation()}
+                          onDoubleClick={(e) => e.stopPropagation()}
+                          className={`inline-flex min-h-6 flex-none items-center rounded border px-1.5 font-mono text-[10.5px] transition-colors ${
+                            i === sel
+                              ? "border-white/50 text-white hover:bg-white/15"
+                              : "border-line-strong text-accent-strong hover:bg-bg-3/60"
+                          }`}
+                        >
+                          열기 ↗
+                        </a>
+                      )}
                     </span>
                   </td>
                   <td className={`px-3.5 py-2 font-mono text-[11.5px] ${i === sel ? "text-white" : "text-fg-dim"}`}>
@@ -172,9 +195,12 @@ export function Finder({ win }: AppWindowProps) {
 
       {current && (
         <div className="max-h-[42%] flex-none overflow-auto border-t border-line bg-bg-1/50 px-4 pb-5 pt-3.5">
-          <h3 className="text-[15px] font-semibold text-fg">
-            <span aria-hidden>{current.icon}</span> {current.name}
-          </h3>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+            <h3 className="text-[15px] font-semibold text-fg">
+              <span aria-hidden>{current.icon}</span> {current.name}
+            </h3>
+            <ProjectLinks demo={current.demo} github={current.github} />
+          </div>
           {current.detail.stack && current.detail.stack.length > 0 && (
             <div>{current.detail.stack.map((s) => <Chip key={s}>{s}</Chip>)}</div>
           )}
