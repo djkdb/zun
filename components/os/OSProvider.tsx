@@ -5,6 +5,7 @@ import {
 } from "react";
 import { APPS } from "./registry";
 import type { AppId, Appearance, OSNotification, OSSettings, WindowState } from "./types";
+import { markGuideSeen } from "./guide";
 
 /* ───────────────────────── desktop element ─────────────────────────
    There is exactly one desktop shell. Holding its element in a module
@@ -213,6 +214,10 @@ interface OSContext {
   spotlight: boolean;
   setSpotlight: (on: boolean) => void;
 
+  /** the first-visit "how to use ZUN OS" banner */
+  guide: boolean;
+  setGuide: (on: boolean) => void;
+
   power: "on" | "restarting" | "off";
   setPower: (p: "on" | "restarting" | "off") => void;
 
@@ -234,6 +239,7 @@ export function OSProvider({ children }: { children: React.ReactNode }) {
   const [settings, setSettings] = useState<OSSettings>(DEFAULT_SETTINGS);
   const [notifications, setNotifications] = useState<OSNotification[]>([]);
   const [spotlight, setSpotlight] = useState(false);
+  const [guide, setGuide] = useState(false);
   const [power, setPower] = useState<"on" | "restarting" | "off">("on");
   const [narrow, setNarrow] = useState(false);
   const [systemReduce, setSystemReduce] = useState(false);
@@ -323,8 +329,20 @@ export function OSProvider({ children }: { children: React.ReactNode }) {
     (appId: AppId, opts?: { arg?: string; title?: string }) => {
       dispatch({ type: "open", appId, arg: opts?.arg, title: opts?.title, bounds: desktopBounds(), narrow });
       beep("open");
+      /*
+        Opening an app is the guide's first lesson, so whoever has done it is
+        through the guide. Closing it here also matters on a phone: there the
+        banner sits right under the menu bar, exactly where a new window puts
+        its × button, and left open it made that window impossible to close.
+        Only an open banner counts — the wide-screen auto-open of 보관함 runs
+        before the guide appears and must not mark it seen.
+      */
+      if (guide) {
+        setGuide(false);
+        markGuideSeen();
+      }
     },
-    [narrow, beep],
+    [narrow, beep, guide],
   );
 
   const closeWindow = useCallback((id: string) => { dispatch({ type: "close", id }); beep("close"); }, [beep]);
@@ -376,6 +394,8 @@ export function OSProvider({ children }: { children: React.ReactNode }) {
     dismiss,
     spotlight,
     setSpotlight,
+    guide,
+    setGuide,
     power,
     setPower,
     beep,

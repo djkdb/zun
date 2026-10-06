@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { BootScreen } from "./BootScreen";
 import { Desktop } from "./Desktop";
 import { LoginScreen } from "./LoginScreen";
+import { guideSeen } from "./guide";
 import { OSProvider, useOS } from "./OSProvider";
 
 type Phase = "boot" | "login" | "desktop";
@@ -29,33 +30,34 @@ function Shell() {
     } catch {
       /* storage blocked — boot normally */
     }
-    if (booted) queueMicrotask(() => setPhase("desktop"));
-  }, []);
+    if (booted)
+      queueMicrotask(() => {
+        setPhase("desktop");
+        if (!guideSeen()) os.setGuide(true);
+      });
+  }, [os]);
 
   const enter = useCallback(() => {
     setPhase("desktop");
     try { sessionStorage.setItem("zunos.booted", "1"); } catch { /* ignore */ }
 
     /*
-      On a phone a window fills nearly the whole screen, so opening one here
-      means the desktop is never actually seen and its icons cannot be reached
-      until something is closed. Wide screens have room for both, so they keep
-      the warm start. 760px is the same breakpoint the layout switches on.
+      Where the visitor starts:
+      - First visit: the usage guide, on an otherwise clear desktop. Its
+        "만든 것부터 보기" button is the warm start, so 보관함 is not opened
+        as well — on a wide screen the two landed on top of each other.
+      - Returning, wide screen: 보관함 opens straight away, as before.
+      - Returning, phone: nothing opens. A phone window fills nearly the whole
+        screen, so opening one hides the desktop and its icons until it is
+        closed. 760px is the same breakpoint the layout switches on.
+      The guide also replaces the old welcome toast: same message, but it
+      stays until read instead of timing out.
     */
-    const narrow = window.matchMedia("(max-width: 760px)").matches;
-    if (!narrow) os.openApp("finder");
-
-    window.setTimeout(
-      () =>
-        os.notify(
-          "👋",
-          "ZUN OS에 오신 걸 환영합니다",
-          narrow
-            ? "바탕화면 아이콘을 눌러 열고, 아래 Dock으로 옮겨 다니세요."
-            : "Dock을 스쳐보고, ⌘K로 검색하고, 바탕화면을 우클릭해 보세요.",
-        ),
-      700,
-    );
+    if (!guideSeen()) {
+      window.setTimeout(() => os.setGuide(true), 450);
+    } else if (!window.matchMedia("(max-width: 760px)").matches) {
+      os.openApp("finder");
+    }
   }, [os]);
 
   return (

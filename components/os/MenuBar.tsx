@@ -95,7 +95,8 @@ export function MenuBar() {
       id: "help",
       label: "도움말",
       items: [
-        { label: "ZUN OS 사용법", run: () => os.openApp("notes", { arg: "help", title: "기록 — ZUN OS 사용법" }) },
+        { label: "사용법 안내 다시 보기", run: () => os.setGuide(true) },
+        { label: "ZUN OS 사용법 (자세히)", run: () => os.openApp("notes", { arg: "help", title: "기록 — ZUN OS 사용법" }) },
         { label: "링크 열기", run: () => os.openApp("safari") },
       ],
     },

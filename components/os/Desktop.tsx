@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { ContextMenu } from "./ContextMenu";
 import { DesktopIcon } from "./DesktopIcon";
 import { Dock } from "./Dock";
+import { GuideBanner } from "./GuideBanner";
 import { MenuBar } from "./MenuBar";
 import { Nameplate } from "./Nameplate";
 import { Notifications } from "./Notifications";
@@ -33,6 +34,7 @@ export function Desktop() {
       if (meta && k === "n") { e.preventDefault(); os.openApp("finder"); return; }
       if (e.key === "Escape") {
         if (os.spotlight) os.setSpotlight(false);
+        else if (os.guide) os.setGuide(false);
         else if (os.focused) os.closeWindow(os.focused);
       }
     };
@@ -83,6 +85,7 @@ export function Desktop() {
 
       <ContextMenu />
       <Notifications />
+      <GuideBanner />
       <Spotlight />
       <div data-dock>
         <Dock />

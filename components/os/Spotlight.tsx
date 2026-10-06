@@ -48,6 +48,8 @@ function SpotlightPanel() {
     for (const c of contentItems) out.push({ icon: "📸", title: c.title, kind: "콘텐츠", run: () => os.openApp("photos") });
     out.push(
       { icon: "📄", title: "일반 보기 (스크롤 사이트)", kind: "ZUN OS", run: () => router.push("/classic") },
+      // phones have no 도움말 menu, so search is the one route back to the guide on every device
+      { icon: "🧭", title: "사용법 안내 다시 보기", kind: "ZUN OS", run: () => os.setGuide(true) },
       { icon: "🌓", title: "다크 / 라이트 전환", kind: "설정", run: () => os.setAppearance(os.settings.appearance === "dark" ? "light" : "dark") },
       { icon: "🎮", title: "TERMINAL CITY 실행", kind: "Playground", run: () => os.openApp("playground") },
     );
